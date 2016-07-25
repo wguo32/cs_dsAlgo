@@ -1,0 +1,22 @@
+
+      procedure InsertionSort( var A : InputArray; N : integer );
+        var
+          j, P : integer;
+          Tmp  : InputType;
+    
+      begin
+{1}       A[ 0 ] := MinData;    { Sentinel }
+{2}       for P:= 2 to N do begin
+{3}           j := P; Tmp := A[ P ];
+    
+{4}           while Tmp < A[ j - 1 ] do begin
+{5}               A[ j ] := A[ j - 1 ];
+{6}               j := j - 1;
+              end;  { while }
+    
+{7}           A[ j ] := Tmp;
+          end;  { for }
+      end;
+
+
+

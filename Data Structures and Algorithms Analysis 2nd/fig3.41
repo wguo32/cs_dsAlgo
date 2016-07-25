@@ -1,0 +1,12 @@
+
+      type
+          NodePtr = ^Node;
+          Node = record
+              Element : ElementType;
+              Next : NodePtr;
+          end;
+    
+          Stack = ^Node;
+
+
+

@@ -1,0 +1,42 @@
+
+      procedure Insert( X : ElementType; var T : SearchTree );
+      begin
+          if T = nil then
+          begin
+              { Create A One Node Tree }
+    
+              new( T );
+              if T = nil then
+                  FatalError( 'Out of space !!!' )
+              else
+              begin
+                  T^.Element := X;
+                  T^.Left := nil;
+                  T^.Right := nil;
+                  T^.Height := 0;
+              end;
+          end	{ if T = nil }
+          else
+          begin
+              if X < T^.Element then
+              begin
+                  Insert( X, T^.Left );
+                  if Height( T^.Left ) - Height( T^.Right ) = 2 then
+                      if X < T^.Left^.Element then
+                          SRotateLeft( T )
+                      else
+                          DRotateLeft( T )
+                  else
+                      T^.Height := 1 +
+                          Max( Height( T^.Left ), Height( T^.Right ) );
+              end
+              else
+              begin
+                  { Symmetric Case for Right Subtree }
+              end;
+              { Else X Is in The Tree Already.  We'll do nothing }
+          end;  { if T <> nil }
+      end;  { Insert }
+
+
+

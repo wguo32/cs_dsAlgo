@@ -1,0 +1,14 @@
+
+      function FindMin( T : SearchTree ) : TreePtr;
+      begin
+          if T = nil then
+              FindMin := nil
+          else
+          if T^.Left = nil then
+              FindMin := T
+          else
+              FindMin := FindMin( T^.Left );
+      end;
+
+
+

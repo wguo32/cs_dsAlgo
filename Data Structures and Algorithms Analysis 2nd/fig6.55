@@ -1,0 +1,34 @@
+
+      function Merge( H1, H2 : PriorityQueue ) : PriorityQueue;
+        var
+          H3, T1, T2, T3 : PriorityQueue;
+      begin
+{1}       if H1 = nil then
+{2}           Merge := H2
+          else
+{3}       if H2 = nil then
+{4}           Merge := H1
+          else
+{5}       if H1^.Rank < H2^.Rank then
+          begin
+{6}           Extract( T1, H1 );
+{7}           H3 := Merge( H1, H2 );
+{8}           T1^.LSib := H3^.LSib;
+{9}           H3^.LSib^.RSib := nil;
+{10}          T1^.RSib := H3; H3^.LSib := T1;
+{11}          Merge := T1;
+          end
+          else
+{12}      if H2^.Rank < H1^.Rank then
+{13}          Merge := Merge( H2, H1 )
+          else
+          begin
+{14}          Extract( T1, H1 ); Extract( T2, H2 );
+{15}          H3 := Merge( H1, H2 );
+{16}          T3 := MergeTree( T1, T2 );
+{17}          Merge := Merge( H3, T3 );
+          end;
+      end;
+
+
+

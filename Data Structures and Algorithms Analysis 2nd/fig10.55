@@ -1,0 +1,22 @@
+
+      const
+          A = 48271;
+          M = 2147483647;   { 2^31 -1 }
+          Q = 44488;        { M div A }
+          R = 3399;         { M mod A }
+    
+      var Seed : integer;   { Global Variable }
+      function Random : real;
+          var TmpSeed : integer;
+      begin
+          TmpSeed := A * ( Seed mod Q ) - R * ( Seed div Q );
+          if TmpSeed >= 0 then
+              Seed := TmpSeed
+          else
+              Seed := TmpSeed + M;
+    
+          Random := Seed / M;
+      end;
+
+
+

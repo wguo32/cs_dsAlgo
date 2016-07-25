@@ -1,0 +1,25 @@
+
+      function Find( Key : ElementType; var H : HashTable ) : Position;
+        label 999;
+        var
+          CurrentPos, CollisionNum : integer;
+      begin
+{1}       CollisionNum := 0;
+{2}       CurrentPos := Hash( Key );
+    
+{3}       while H[ CurrentPos ].Info <> Empty do
+{4}           if H[ CurrentPos ].Element = Key then
+{5}               goto 999          { Key Found }
+              else
+              begin		{ Quadratic Resolution -- Find Another Cell }
+{6}               CollisionNum := CollisionNum + 1;
+{7}               CurrentPos := CurrentPos + 2*CollisionNum - 1;
+{8}               if CurrentPos >= TableSize then
+{9}                   CurrentPos := CurrentPos - TableSize;
+              end;
+      999 :
+{10}      Find := CurrentPos;
+      end;
+
+
+

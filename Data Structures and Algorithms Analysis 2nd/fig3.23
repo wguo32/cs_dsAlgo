@@ -1,0 +1,20 @@
+
+      procedure MultPolynomial( var Poly1, Poly2, Product : Polynomial );
+        var
+          i, j : integer;
+    
+      begin
+          ZeroPolynomial( Product );
+          Product.HighPower := Poly1.HighPower + Poly2.HighPower;
+          if Product.HighPower > MaxDegree then
+              Error( 'Exceeded array size' )
+          else
+              for i := 0 to Poly1.HighPower do
+                  for j := 0 to Poly2.HighPower do
+                      Product.CoeffArray[ i+j ] :=
+                          Product.CoeffArray[ i+j ] +
+                          Poly1.CoeffArray[ i ] * Poly2.CoeffArray[ j ];
+      end;
+
+
+

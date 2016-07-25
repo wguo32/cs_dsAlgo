@@ -1,0 +1,15 @@
+
+      type
+          TreePtr = ^TreeNode;
+    
+          TreeNode = record
+              Element	 : ElementType;
+              Left	 : TreePtr;
+              Right	 : TreePtr;
+              Npl	 : integer;
+          end;
+    
+          PriorityQueue = TreePtr;
+
+
+

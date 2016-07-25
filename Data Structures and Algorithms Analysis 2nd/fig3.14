@@ -1,0 +1,21 @@
+
+      { Uses A Header.  If Element Is not Found, }
+      { then Next Field of Returned Value Is nil }
+    
+      function FindPrevious( X : ElementType; L : List ) : Position;
+        label 999;
+        var
+          P : Position;
+      begin
+{1}       P := L;
+{2}       while P^.Next <> nil do
+{3}           if P^.Next^.Element = X then
+{4}               goto 999
+              else
+{5}               P := P^.Next;
+      999 : 
+{6}       FindPrevious := P;
+      end;
+
+
+

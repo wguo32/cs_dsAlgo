@@ -1,0 +1,31 @@
+      
+      { Perform a rotation at node X (whose parent is passed as a parameter) }
+      { The child is deduced by examing Item }
+      
+      function Rotate( Item : ElementType; var Parent : RedBlackPtr ) : RedBlackPtr;
+        var
+          XIsLeft : Boolean;    { True if X is Parent's left child }
+      begin
+          XIsLeft := Item < Parent^.Element;
+      
+          if XIsLeft then
+          begin
+              if Item < Parent^.Left^.Element then
+                  RotateWithLeftChild( Parent^.Left )
+              else
+                  RotateWithRightChild( Parent^.Left );
+              Rotate := Parent^.Left;
+          end
+          else
+          begin
+              if Item < Parent^.Right^.Element then
+                  RotateWithLeftChild( Parent^.Right )
+              else
+                  RotateWithRightChild( Parent^.Right );
+              Rotate := Parent^.Right;
+          end;
+      end;
+      
+      
+      
+      

@@ -1,0 +1,15 @@
+
+{1}   function Gcd( M, N : integer ) : integer;
+        var
+          Rem : integer;
+      begin
+{2}       while N > 0 do begin
+{3}           Rem := M mod N;
+{4}           M := N;
+{5}           N := Rem;
+          end; { while }
+{6}       Gcd := M;
+      end; {Gcd }
+
+
+

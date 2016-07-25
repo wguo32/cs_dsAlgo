@@ -1,0 +1,8 @@
+
+      function IsEmpty( var Q : Queue ) : boolean;
+      begin
+          IsEmpty := ( Q.QSize = 0 );
+      end;
+
+
+

@@ -1,0 +1,31 @@
+      
+      procedure Remove( Item : ElementType; var T : Treap );
+      begin
+          if T <> NilNode then
+          begin
+              if Item < T^.Element then
+                  Remove( Item, T^.Left )
+              else
+              if Item > T^.Element then
+                  Remove( Item, T^.Right )
+              else { Match!! }
+              begin
+                  if T^.Left^.Priority < T^.Right^.Priority then
+                      RotateWithLeftChild( T )
+                  else
+                      RotateWithRightChild( T );
+                  
+                  if T <> NilNode then
+                      Remove( Item, T )  { Continue on down }
+                  else
+                  begin                      { At a leaf }
+                      dispose( T^.Left );
+                      T^.Left := NilNode;
+                  end;
+              end;
+          end;
+      end;
+      
+      
+      
+      

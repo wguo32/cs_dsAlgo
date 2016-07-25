@@ -1,0 +1,28 @@
+      
+      { Delete Item from Tree T; be silent if Item is not found }
+      
+      procedure Delete( Item : ElementType; var T :  SplayTree );
+        var
+          NewTree : SplayPtr;
+      begin
+          if T <> NilNode then
+          begin
+              Splay( Item, T );
+              if Item = T^.Element then   { Found it! }
+              begin
+                  if T^.Left = NilNode then
+                      NewTree := T^.Right
+                  else
+                  begin
+                      NewTree := T^.Left;
+                      Splay( Item, NewTree );
+                      NewTree^.Right := T^.Right;
+                  end;
+                  dispose( T );
+                  T := NewTree;
+              end;
+          end;
+      end;
+      
+      
+      

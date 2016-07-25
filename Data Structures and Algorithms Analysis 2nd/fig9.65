@@ -1,0 +1,20 @@
+
+      { Assign Num and Compute Parents }
+    
+      procedure AssignNum( V : Vertex );
+        var
+          W : Vertex;
+      begin
+{1}       Num[ V ] := Counter;
+{2}       Counter := Counter + 1;
+{3}       Visited[ W ] := true;
+{4}       for Each W Adjacent to V do
+{5}           if not Visited[ W ] then
+              begin
+{6}               Parent[ W ] := V;
+{7}               AssignNum( W );
+              end;
+      end;
+
+
+

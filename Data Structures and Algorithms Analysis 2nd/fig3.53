@@ -1,0 +1,14 @@
+
+      procedure Pop( var S : Stack; var TopElement : ElementType );
+      begin
+          if IsEmpty( S ) then
+              Error( 'empty stack' )
+          else
+          begin
+              TopElement := S.StackArray[ S.TopOfStack ];
+              S.TopOfStack := S.TopOfStack - 1;
+          end;
+      end;
+
+
+

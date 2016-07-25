@@ -1,0 +1,20 @@
+
+      procedure ZigLeft( X : SplayPtr );
+        var
+          P, B : SplayPtr;
+      begin
+          P := X^.Parent;
+          B := X^.Right;
+    
+          X^.Right := P;    { X's New Right Child Is P }
+          X^.Parent := nil;
+    
+          if B <> nil then
+              B^.Parent := P;
+    
+          P^.Left := B;
+          P^.Parent := X;
+      end;
+
+
+

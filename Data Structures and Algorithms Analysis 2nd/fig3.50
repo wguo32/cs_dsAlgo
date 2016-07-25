@@ -1,0 +1,14 @@
+
+      procedure Push( X : ElementType; var S : Stack );
+      begin
+          if IsFull( S ) then
+              Error( 'full stack' )
+          else
+          begin
+              S.TopOfStack := S.TopOfStack + 1;
+              S.StackArray[ S.TopOfStack ] := X;
+          end;
+      end;
+
+
+

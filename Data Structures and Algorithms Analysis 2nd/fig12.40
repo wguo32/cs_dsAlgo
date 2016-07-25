@@ -1,0 +1,28 @@
+      
+      procedure Insert( Item : ElementType; var T : Treap );
+      begin
+          if T = NilNode then
+          begin
+              new( T ); T^.Element := Item; T^.Priority := Random;
+              T^.Left := NilNode; T^.Right := NilNode;
+          end
+          else
+          if Item < T^.Element then
+          begin
+              Insert( Item, T^.Left );
+              if T^.Left^.Priority < T^.Priority then
+                  RotateWithLeftChild( T );
+          end
+          else
+          if Item > T^.Element then
+          begin
+              Insert( Item, T^.Right );
+              if T^.Right^.Priority < T^.Priority then
+                  RotateWithRightChild( T );
+          end;
+              { Otherwise it's a duplicate; do nothing }
+      end;  { Insert }
+      
+      
+      
+      

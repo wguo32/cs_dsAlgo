@@ -1,0 +1,14 @@
+
+      procedure PrintList( L : Nodeptr );  { No Header }
+        label 0;
+      begin
+      0 : 
+          if L <> nil then begin
+              writeln( L^.Element );
+              L := L^.Next;
+              goto 0;
+          end; { if }
+      end;  { PrintList }
+
+
+

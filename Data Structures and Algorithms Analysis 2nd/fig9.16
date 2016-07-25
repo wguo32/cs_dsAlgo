@@ -1,0 +1,23 @@
+
+      procedure Unweighted( var T : Table ); { Assume T Is Initialized }
+        var
+          CurrDist : integer;
+          V, W : Vertex;
+      begin
+{1}       for CurrDist:=0 to NumVertex-1 do
+{2}           for Each Vertex V do
+{3}               if ( not T[ V ].Known ) and
+                                  ( T[ V ].Dist = CurrDist ) then
+                  begin
+{4}                   T[ V ].Known := true;
+{5}                   for Each W Adjacent to V do
+{6}                       if T[ W ].Dist = MAXINT then
+                          begin
+{7}                           T[ W ].Dist := CurrDist + 1;
+{8}                           T[ W ].Path := V;
+                          end;
+                  end;
+      end;
+
+
+

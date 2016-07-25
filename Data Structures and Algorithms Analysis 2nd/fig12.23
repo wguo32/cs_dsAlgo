@@ -1,0 +1,38 @@
+      
+      type
+          SkipPtr  = ^SkipNode;
+          SkipList = SkipPtr;
+      
+          SkipNode = record
+              Element   : ElementType;
+              Right     : SkipPtr;
+              Down      : SkipPtr;
+          end;
+      
+      var    { Global variables: initialize Bottom to nil once }
+          Bottom : SkipPtr;
+          Tail   : SkipPtr;
+      
+          { Initialize the sentinels }
+      procedure Initialize( var L : SkipList );
+      begin
+          if Bottom = nil then
+          begin
+              new( Bottom );
+              Bottom^.Right := Bottom;
+              Bottom^.Down := Bottom;
+              new( Tail );
+              Tail^.Element := Infinity;
+              Tail^.Right := Tail;
+          end;
+      
+          { Create the header node }
+          new( L );
+          L^.Element := Infinity;
+          L^.Right := Tail;
+          L^.Down := Bottom;
+      end;
+      
+      
+      
+      

@@ -1,0 +1,20 @@
+
+      function Eval( N : integer ) : real;   { Assume N <= Max }
+        var
+          C : array [ 0 .. Max ] of real;
+          Sum : real;
+          i, j : integer;
+      begin
+          C[ 0 ] := 1.0;
+          for i := 1 to N do
+          begin
+              Sum := 0.0;
+              for j := 0 to i - 1 do
+                  Sum := Sum + C[ j ];
+              C[ i ] := 2.0 * Sum / i + i;
+          end;
+          Eval := C[ N ];
+      end;
+
+
+

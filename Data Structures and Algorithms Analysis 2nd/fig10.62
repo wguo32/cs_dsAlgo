@@ -1,0 +1,55 @@
+
+      type TestResult = ( ProbablyPrime, DefinitelyComposite );
+    
+      { Compute Result =  A^P mod N. }
+      { If At Any Point X^2 == 1 mod N Is Detected }
+      { with X <> 1 and X<> N - 1, }
+      { Then Set WhatNIs to DefinitelyComposite. }
+      { We Are Assuming Very Large Integers, }
+      { So This Is Really Pseudocode. }
+    
+      procedure Power( A, P, N : integer; var Result : integer;
+                                          var WhatNIs : TestResult );
+        var
+          X : integer;
+      begin
+{1}       if P = 0 then    { Base case }
+{2}           Result := 1
+          else
+          begin
+{3}           Power( A, P div 2, N, X, WhatNIs );
+{4}           Result := ( X * X ) mod N;
+    
+              { Check if X^2 == 1 mod N, with X <> 1 and X <> N - 1 }
+{5}           if ( Result = 1 ) and ( X <> 1 ) and ( X <> N - 1 ) then
+{6}               WhatNIs := DefinitelyComposite;
+    
+{7}           if P mod 2 = 1 then   { If P Is odd, We Need One More A }
+{8}               Result := ( Result * A ) mod N;
+          end;
+      end;
+    
+      { TestPrime : Test Whether N>=3 Is Prime Using One Value of A }
+      { Repeat This procedure As Many Times As Needed }
+      { for Desired Error Rate.  }
+    
+      function TestPrime( N : integer ) : TestResult;
+        var
+          A, Result : integer;
+          WhatNIs : TestResult;
+      begin
+{9}       Choose A Randomly From 2 .. N - 2;
+{10}      WhatNIs := ProbablyPrime;
+    
+              { Compute A^( N - 1 ) mod N }
+{11}      Power( A, N - 1, N, Result, WhatNIs );
+    
+{12}      if ( Result <> 1 ) or ( WhatNIs = DefinitelyComposite ) then
+{13}          TestPrime := DefinitelyComposite
+          else
+{14}          TestPrime := ProbablyPrime;
+      end;
+    
+
+
+

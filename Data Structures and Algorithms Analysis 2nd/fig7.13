@@ -1,0 +1,26 @@
+
+      { Return Median of Left, Center and Right. }
+      { Order These and Hide Pivot. }
+    
+      procedure Median3( var A : InputData; Left, Right : integer;
+                             var Pivot : InputType );
+        var
+          Center : integer;
+      begin
+          Center := ( Left + Right ) div 2;
+    
+          if A[ Left ] > A[ Center ] then
+              Swap( A[ Left ], A[ Center ] );
+          if A[ Left ] > A[ Right ] then
+              Swap( A[ Left ], A[ Right ] );
+          if A[ Center ] > A[ Right ] then
+              Swap( A[ Center ], A[ Right ] );
+    
+          { Invariant : A[ Left ] <= A[ Center ] <= A[ Right ] }
+    
+          Pivot := A[ Center ];
+          Swap( A[ Center ], A[ Right - 1 ] );   { Hide The Pivot }
+      end;
+
+
+

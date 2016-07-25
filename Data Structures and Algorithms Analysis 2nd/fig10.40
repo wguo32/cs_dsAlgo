@@ -1,0 +1,14 @@
+
+      { Compute Fibonacci Numbers As Described in Chapter 1 }
+      { Assume N >= 0 }
+    
+      function Fib( N : integer ) : integer;
+      begin
+{1}       if( N = 0 ) or ( N = 1 ) then
+{2}           Fib := 1
+          else
+{3}           Fib := Fib ( N - 1 ) + Fib ( N - 2 );
+      end;
+
+
+

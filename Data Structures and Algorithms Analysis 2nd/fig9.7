@@ -1,0 +1,32 @@
+
+      procedure Topsort( G : Graph );
+        var
+          Q : Queue;
+          Counter : integer;
+          V, W : Vertex;
+    
+      begin
+{1}       MakeEmpty( Q ); Counter := 1;
+    
+{2}       for Each Vertex V do
+{3}           if Indegree[ V ] = 0 then
+{4}               Enqueue( V, Q );
+    
+{5}       while not IsEmpty( Q ) do begin
+{6}           V := Dequeue( Q );
+{7}           TopNum[ V ] := Counter;   { Assign Next Number }
+{8}           Counter := Counter + 1;
+    
+{9}           for Each W Adjacent to V do begin
+{10}              Indegree[ W ] := Indegree[ W ] - 1;
+{11}              if Indegree[ W ] = 0 then
+{12}                  Enqueue( W, Q );
+              end;
+          end;
+    
+{13}      if Counter <= NumVertex then
+{14}          Error( 'Graph has a cycle' );
+      end;
+
+
+

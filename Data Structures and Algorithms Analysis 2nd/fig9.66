@@ -1,0 +1,23 @@
+
+      { Assign Low.  Also Check for Articulation Points }
+      procedure AssignLow( V : Vertex );
+        var
+          W : Vertex;
+      begin
+{1}       Low[ V ] := Num[ V ];                            { Rule 1 }
+{2}       for Each W Adjacent to V do begin
+{3}           if Num[ W ] > Num[ V ] then      { Forward Edge }
+              begin
+{4}               AssignLow( W );
+{5}               if Low[ W ] >= Num[ V ] then
+{6}                   writeln( V, ' is an articulation point' );
+{7}               Low[ V ] := Min( Low[ V ], Low[ W ] );   { Rule 3 }
+              end
+              else
+{8}           if Parent[ V ] <> W then         { Backedge }
+{9}               Low[ V ] := Min( Low[ V ], Num[ W ] );   { Rule 2 }
+          end;
+      end;
+
+
+

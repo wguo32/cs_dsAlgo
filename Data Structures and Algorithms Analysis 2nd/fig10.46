@@ -1,0 +1,35 @@
+
+      { Compute Optimal Ordering of Matrix Multiplication. }
+      { C Contains Number of Columns for Each of The N Matrices. }
+      { C[ 0 ] Is The Number of Rows in Matrix 1. }
+      { Minimum Number of Multiplications Is Left in M[ 1, N ]. }
+      { Actual Ordering Can Be Computed Via Another }
+      { Procedure Using LastChange. }
+    
+      procedure OptMatrix( C : ArrayOfInteger; N : integer;
+                          var M, LastChange : TwoDArray );
+        var
+          i, k, Left, Right, ThisM : integer;
+      begin
+          for Left := 1 to N do
+              M[ Left, Left ] := 0;
+          for k := 1 to N - 1 do              { k Is Right-Left }
+              for Left := 1 to N - k do       { For Each Position }
+              begin
+                  Right := Left + k;
+                  M[ Left, Right ] := MAXINT;
+                  for i := Left to Right - 1 do    { Compute Min }
+                  begin
+                      ThisM := M[ Left, i ] + M[ i + 1, Right ]
+                               + C[ Left - 1 ] * C[ i ] * C[ Right ];
+                      if ThisM < M[ Left, Right ] then  { Update Min }
+                      begin
+                          M[ Left, Right ] := ThisM;
+                          LastChange[ Left, Right ] := i;
+                      end;
+                  end;
+              end;
+      end;
+
+
+

@@ -1,0 +1,13 @@
+
+      type
+          NodePtr    = ^Node;
+          Polynomial = ^Node;    { Keep Nodes Sorted By Exponent }
+    
+          Node = record
+              Coefficient  : integer;
+              Exponent     : integer;
+              Next         : NodePtr;
+          end;
+
+
+

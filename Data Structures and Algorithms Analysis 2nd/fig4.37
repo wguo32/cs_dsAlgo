@@ -1,0 +1,16 @@
+
+      type
+          AvlPtr = ^AvlNode;
+    
+          AvlNode = record
+              Element	 : ElementType;
+              Left	 : AvlPtr;
+              Right	 : AvlPtr;
+              Height	 : integer;
+          end;
+    
+          SearchTree = AvlPtr;
+    
+
+
+

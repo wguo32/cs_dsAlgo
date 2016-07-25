@@ -1,0 +1,11 @@
+
+      procedure InitializeTable( var H : HashTable );
+        var
+          i : integer;
+      begin
+          for i := TableSize - 1 downto 0 do
+              H[ i ].Info := Empty;
+      end;
+
+
+

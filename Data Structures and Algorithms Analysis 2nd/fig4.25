@@ -1,0 +1,42 @@
+
+      procedure Delete( X : ElementType; var T : SearchTree );
+        var
+          TmpCell : TreePtr;
+    
+      begin
+          if T = nil then
+              Error( 'Element not found' )
+          else
+          begin
+              if X < T^.Element then     { Go Left }
+                  Delete( X, T^.Left )
+              else
+              if X > T^.Element then     { Go Right }
+                  Delete( X, T^.Right )
+              else                       { Found The  Element to Be Deleted }
+              begin
+                  if T^.Left = nil then  { Only A Right Child }
+                  begin
+                      TmpCell := T;
+                      T := T^.Right;
+                      dispose( TmpCell );
+                  end
+                  else
+                  if T^.Right = nil then { Only A Left Child }
+                  begin
+                      TmpCell := T;
+                      T := T^.Left;
+                      dispose( TmpCell );
+                  end
+                  else { 2 Children.  Replace with Smallest }
+                  begin                  { in Right Subtree }
+                      TmpCell := FindMin( T^.Right );
+                      T^.Element := TmpCell^.Element;
+                      Delete( T^.Element, T^.Right );
+                  end;	{ Processing for Two Children }
+              end;
+          end;  { if T = nil else }
+      end;  { Delete }
+
+
+

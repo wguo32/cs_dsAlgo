@@ -1,0 +1,40 @@
+      
+      procedure Insert( Item : ElementType; var T : SplayTree );
+        var
+          NewNode : SplayPtr;
+      begin
+          new( NewNode );     { Assume successful }
+          NewNode^.Element := Item;
+      
+          if T = NilNode then
+          begin
+              NewNode^.Left := NilNode;
+              NewNode^.Right := NilNode;
+              T := NewNode;
+          end
+          else
+          begin
+              Splay( Item, T );
+              if Item < T^.Element then
+              begin
+                  NewNode^.Left := T^.Left;
+                  NewNode^.Right := T;
+                  T^.Left := NilNode;
+                  T := NewNode;
+              end
+              else
+              if Item > T^.Element then
+              begin
+                  NewNode^.Right := T^.Right;
+                  NewNode^.Left := T;
+                  T^.Right := NilNode;
+                  T := NewNode;
+              end
+              else
+                  dispose( NewNode );    { Already in the tree }
+          end;
+      end;
+      
+      
+      
+      

@@ -1,0 +1,11 @@
+
+      function Top( S : Stack ) : ElementType;
+      begin
+          if IsEmpty( S ) then
+              Error( 'empty stack' )
+          else
+              Top := S^.Element;
+      end;
+
+
+

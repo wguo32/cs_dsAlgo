@@ -1,0 +1,13 @@
+
+      type
+          Position = ^Node;
+    
+          Node = record
+              Element : ElementType;
+              Next : Position;
+          end;
+    
+          HashTable = array[ Index ] of Position;  { array of Headers }
+
+
+

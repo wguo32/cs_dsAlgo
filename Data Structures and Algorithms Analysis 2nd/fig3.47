@@ -1,0 +1,9 @@
+
+      type
+          Stack = record
+              TopOfStack : integer;
+              StackArray : array[ 1 .. StackSize ] of ElementType;
+          end;
+
+
+

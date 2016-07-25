@@ -1,0 +1,34 @@
+      
+      type
+          AAPtr  = ^AANode;
+          AATree = AAPtr;
+      
+          AANode = record
+              Element   : ElementType;
+              Left      : AATree;
+              Right     : AATree;
+              Level     : integer;
+          end;
+      
+      var
+          NilNode : AAPtr;  { Global variable: initialize to nil once }
+          DeletePtr, LastPtr : AATree;  { Used for deletions }
+      
+          { Initialize T and sentinel }
+      procedure Initialize( var T : AATree );
+      begin
+          if NilNode = nil then
+          begin
+              new( NilNode );
+              NilNode^.Left := NilNode;
+              NilNode^.Right := NilNode;
+              NilNode^.Level := 0;
+          end;
+      
+          DeletePtr := NilNode;
+          T := NilNode;
+      end;
+      
+      
+      
+      

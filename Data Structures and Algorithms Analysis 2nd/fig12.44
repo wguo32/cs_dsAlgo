@@ -1,0 +1,32 @@
+      
+      { Print Items Satisfying }
+      { Low[1] <= Item[1] <= High[1] AND Low[2] <= Items[2] <= High[2] }
+      
+      procedure PrintRange( var Low, High : ItemType; T : KdTree );
+      
+          procedure PrintRangeRec( var Low, High : ItemType; T : KdTree;
+                                           Level : integer );
+          begin
+              if T <> nil then
+              begin
+                  if (Low[1] <= T^.Data[1])
+                          and (Low[2] <= T^.Data[2])
+                          and (High[1] >= T^.Data[1])
+                          and (High[2] >= T^.Data[2]) then
+                      writeln( '(', T^.Data[1], ',',  T^.Data[2], ')' );
+      
+                  if Low[ Level ] <= T^.Data[ Level ] then
+                      PrintRangeRec( Low, High, T^.Left, 3 - Level );
+      
+                  if High[ Level ] >= T^.Data[ Level ] then
+                      PrintRangeRec( Low, High, T^.Right, 3 - Level );
+              end;
+          end;
+      
+      begin
+          PrintRangeRec( Low, High, T, 1 );
+      end;
+      
+      
+      
+      

@@ -1,0 +1,19 @@
+
+      function MergeTree( T1, T2 : PriorityQueue ) : PriorityQueue;
+      begin
+          if T1^.Element > T2^.Element then
+              Swap( T1, T2 );
+          if T1^.Rank = 0 then
+              T1^.FChild := T2
+          else
+          begin
+              T2^.LSib := T1^.FChild^.LSib;
+              T2^.LSib^.RSib := T2;
+              T1^.FChild^.LSib := T2;
+          end;
+          T1^.Rank := T1^.Rank + 1;
+          MergeTree := T1;
+      end;
+
+
+

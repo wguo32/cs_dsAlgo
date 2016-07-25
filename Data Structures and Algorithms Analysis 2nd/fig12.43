@@ -1,0 +1,29 @@
+      
+      { Insertion procedure: Call the recursive procedure with Level = 1 }
+      
+      procedure Insert( var Item : ItemType; var T : KdTree );
+      
+          procedure InsertRec( var Item : ItemType; var T : KdTree;
+                                  Level : integer );
+          begin
+              if T = nil then
+              begin
+                  new( T );
+                  T^.Left := nil;
+                  T^.Right := nil;
+                  T^.Data := Item;
+              end
+              else
+              if Item[ Level ] < T^.Data[ Level ] then
+                  InsertRec( Item, T^.Left, 3 - Level )
+              else
+                  InsertRec( Item, T^.Right, 3 - Level );
+          end;
+      
+      begin
+          InsertRec( Item, T, 1 );
+      end;
+      
+      
+      
+      

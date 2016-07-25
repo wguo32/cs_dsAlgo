@@ -1,0 +1,21 @@
+
+      procedure Insert( X : ElementType ; var H : PriorityQueue );
+        var
+          SingleNode : TreePtr;
+    
+      begin
+{1}       new( SingleNode );
+{2}       if SingleNode = nil then
+{3}           FatalError( 'Out of space !!!' )
+          else
+          begin
+{4}           SingleNode^.Element := X;
+{5}           SingleNode^.Left    := nil;
+{6}           SingleNode^.Right   := nil;
+{7}           SingleNode^.Npl     := 0;
+{8}           H := Merge( SingleNode, H );
+          end;
+      end;
+
+
+

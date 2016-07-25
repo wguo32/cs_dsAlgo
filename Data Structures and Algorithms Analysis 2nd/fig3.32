@@ -1,0 +1,15 @@
+
+      procedure CursorNew( var P : Position );
+      begin
+          P := CursorSpace[ 0 ].Next;
+          CursorSpace[ 0 ].Next := CursorSpace[ P ].Next;
+      end;
+    
+      procedure CursorDispose( P : Position );
+      begin
+          CursorSpace[ P ].Next := CursorSpace[ 0 ].Next;
+          CursorSpace[ 0 ].Next := P;
+      end;
+
+
+

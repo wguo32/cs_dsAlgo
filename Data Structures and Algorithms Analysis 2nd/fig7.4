@@ -1,0 +1,28 @@
+
+      procedure Shellsort( var A : InputData; N : integer );
+        label 99;
+        var
+          Increment, j : integer;
+          Tmp : InputType;
+    
+      begin
+{1}       Increment := N div 2;
+{2}       while Increment > 0 do begin
+{3}           for i :=  Increment+1 to N do begin
+{4}               Tmp := A[ i ]; j := i;
+{5}               while j - Increment > 0 do begin
+{6}                   if Tmp < A[ j - Increment ] then begin
+{7}                       A[ j ] := A[ j - Increment ];
+{8}                       j := j - Increment;
+                      end
+                      else	{ Break Out of while Loop }
+{9}                       goto 99;
+                  end;	{ while }
+{10}      99 : 	  A[ j ] := Tmp;
+              end;  { for }
+{11}          Increment := Increment div 2;
+          end;  { while }
+      end;  { Shellsort }
+
+
+

@@ -1,0 +1,9 @@
+
+      function Hash( Key : StringType; KeySize : integer ) : Index;
+      begin
+          Hash := ( ord( Key[ 1 ] ) + 27 * ord( Key[ 2 ] ) +
+                          729 * ord( Key[ 3 ] ) ) mod TableSize;
+      end;
+
+
+

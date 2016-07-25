@@ -1,0 +1,16 @@
+
+      { Return Position of X in L; nil if not Found }
+    
+      function Find( X : ElementType; L : List ) : Position;
+        var
+          P : Position;
+      begin
+{1}       P := L^.Next;
+{2}       while ( P <> nil ) and ( P^.Element <> X ) do
+{3}           P := P^.Next;
+    
+{4}       Find := P;
+      end;
+
+
+

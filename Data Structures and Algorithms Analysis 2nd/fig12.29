@@ -1,0 +1,24 @@
+      
+      { If T's left child is on the same level as T, perform a rotation }
+      
+      procedure Skew( var T : AATree );
+      begin
+          if T^.Left^.Level = T^.Level then
+              RotateWithLeftChild( T );
+      end;
+      
+      { If T's rightmost grandchild is on the same level, }
+      { rotate right child up }
+      
+      procedure Split( var T : AATree );
+      begin
+          if T^.Right^.Right^.Level = T^.Level then
+          begin
+              RotateWithRightChild( T );
+              T^.Level := T^.Level + 1;   { Don't forget this! }
+          end;
+      end;
+      
+      
+      
+      

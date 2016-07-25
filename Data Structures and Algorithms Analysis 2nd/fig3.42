@@ -1,0 +1,8 @@
+
+      function IsEmpty( S : Stack ) : boolean;
+      begin
+          IsEmpty := ( S = nil );
+      end;
+
+
+

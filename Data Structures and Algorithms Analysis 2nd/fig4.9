@@ -1,0 +1,18 @@
+
+      function SizeDirectory( D : DirectoryOrFile ) : integer;
+        var
+          TotalSize : integer;
+      begin
+{1}       TotalSize := 0;
+{2}       if D Is A Legitimate Entry then
+          begin
+{3}           TotalSize := FileSize( D );
+{4}           if( D Is A Directory ) then
+{5}               for Each Child, C, of D do
+{6}                   TotalSize := TotalSize + SizeDirectory( C );
+          end;
+{7}       SizeDirectory := TotalSize;
+      end;
+
+
+

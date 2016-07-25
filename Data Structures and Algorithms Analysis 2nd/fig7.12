@@ -1,0 +1,9 @@
+
+      procedure QuickSort( var A : InputData; N : integer );
+      begin
+          QSort( A, 1, N );
+          InsertionSort( A, N );
+      end;
+
+
+

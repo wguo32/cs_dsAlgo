@@ -1,0 +1,13 @@
+
+      function Hash( Key : StringType; KeySize : integer ) : Index;
+        var
+          HashVal, j : integer;
+      begin
+{1}       HashVal := ord( Key[ 1 ] );
+{2}       for j := 2 to KeySize do
+{3}           HashVal := HashVal + ord( Key[ j ] );
+{4}       Hash := HashVal mod TableSize;
+      end;
+
+
+

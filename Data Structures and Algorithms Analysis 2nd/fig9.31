@@ -1,0 +1,16 @@
+
+      { Print Shortest Path to V After Dijkstra Has Run }
+      { Assume That The Path Exists }
+    
+      procedure PrintPath( V : Vertex; var T : Table );
+      begin
+          if T[ V ].Path <> 0 then
+          begin
+              PrintPath( T[ V ].Path, T );
+              write( ' to ' );
+          end;
+          write( V );
+      end;
+
+
+

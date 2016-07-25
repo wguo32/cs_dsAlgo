@@ -1,0 +1,9 @@
+
+      type
+          Polynomial = record
+              CoeffArray : array[ 0 .. MaxDegree ] of integer;
+              HighPower : integer;
+          end;
+
+
+

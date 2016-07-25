@@ -1,0 +1,39 @@
+
+      { Recursive Procedure to Find Best Move for Computer }
+      { BestMove Is A Number From 1-9 Indicating Square. }
+      { Possible Values Satisfy CompLoss < Draw < CompWin }
+      { Complementary Procedure FindHumanMove Is Below }
+    
+      procedure FindCompMove( var Board : BoardType;
+                              var BestMove, Value : integer );
+        var
+          Dc, i, Response : integer;	{ Dc Means Don't care }
+      begin
+{1}       if FullBoard( Board ) then
+{2}           Value := Draw
+          else
+{3}       if ImmediateCompWin( Board, BestMove ) then
+{4}           Value := CompWin
+          else
+          begin
+{5}           Value := CompLoss;
+{6}           for i := 1 to 9 do  { Try Each Square }
+              begin
+{7}               if IsEmpty( Board, i ) then
+                  begin
+{8}                   Place( Board, i, Comp );
+{9}                   FindHumanMove( Board, Dc, Response );
+{10}                  Unplace( Board, i );      { Restore Board }
+    
+{11}                  if Response > Value then  { Update Best Move }
+                      begin
+{12}                      Value := Response;
+{13}                      BestMove := i;
+                      end;
+                  end;
+              end;
+          end;
+      end;
+
+
+

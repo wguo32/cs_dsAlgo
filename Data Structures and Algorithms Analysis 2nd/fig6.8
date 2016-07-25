@@ -1,0 +1,27 @@
+
+      { H.Element[ 0 ] Is A Sentinel }
+    
+      procedure Insert( X : ElementType; var H : PriorityQueue );
+        var
+          i : integer;
+    
+      begin
+{1}       if IsFull( H ) then
+{2}           Error( 'Priority queue is full' )
+          else
+          begin
+{3}           H.Size := H.Size + 1;
+{4}           i := H.Size;
+    
+{5}           while H.Element[ i div 2 ] > X do
+              begin
+{6}               H.Element[ i ] := H.Element[ i div 2 ];
+{7}               i := i div 2;
+              end;
+    
+{8}           H.Element[ i ] := X;
+          end;
+      end;
+
+
+

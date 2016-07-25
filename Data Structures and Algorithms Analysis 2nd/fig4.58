@@ -1,0 +1,11 @@
+
+      procedure SingleRotate( X : SplayPtr );
+      begin
+          if X^.Parent^.Left = X then
+              ZigLeft( X )
+          else
+              ZigRight( X );
+      end;
+
+
+

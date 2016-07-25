@@ -1,0 +1,18 @@
+      
+      procedure DeleteMin( var MinItem : ElementType; var H : PairHeap );
+      begin
+          if H = nil then
+              writeln( 'Error -- pairing heap is empty' )
+          else
+          begin
+              MinItem := H^.Element;
+              if H^.LeftChild = nil then
+                  H := nil
+              else
+                  H := CombineSiblings( H^.LeftChild );
+          end;
+      end;
+      
+      
+      
+      

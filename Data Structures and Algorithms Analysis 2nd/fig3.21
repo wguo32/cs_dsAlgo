@@ -1,0 +1,12 @@
+
+      procedure ZeroPolynomial( var Poly : Polynomial );
+        var
+          i : integer;
+      begin
+          for i := 0 to MaxDegree do
+              Poly.CoeffArray[ i ] := 0;
+          Poly.HighPower := 0;
+      end;
+
+
+

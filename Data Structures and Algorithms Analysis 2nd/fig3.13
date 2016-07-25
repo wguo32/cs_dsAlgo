@@ -1,0 +1,21 @@
+
+      { Delete From A List.  Cell Pointed to By P^.Next Is Wiped Out }
+      { Assume That The Position Is Legal. }
+      { Assume Use of A Header Node }
+    
+      procedure Delete( X : ElementType; L : List );
+        var
+          P, TmpCell : Position;
+      begin
+          P := FindPrevious( X, L );
+    
+          if P^.Next <> nil then  { Implicit Assumption of Header Use }
+          begin                   { X Is Found : Delete It }
+              TmpCell := P^.Next;
+              P^.Next := TmpCell^.Next;{ Bypass The Cell to Be Deleted }
+              dispose( TmpCell );      { Free The Space }
+          end;
+      end;
+
+
+

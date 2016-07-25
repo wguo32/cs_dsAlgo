@@ -1,0 +1,10 @@
+
+      procedure MakeEmpty( var Q : Queue );
+      begin
+          Q.QSize := 0;
+          Q.QFront:= 1;
+          Q.QRear := MaxQSize;
+      end;
+
+
+

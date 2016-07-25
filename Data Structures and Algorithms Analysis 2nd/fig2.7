@@ -1,0 +1,49 @@
+
+      function MaxSubSum( var A : InputArray;
+                          Left, Right : integer ) : integer;
+        var
+          MaxLeftSum, MaxRightSum,
+          MaxLeftBorderSum, MaxRightBorderSum,
+          LeftBorderSum, RightBorderSum,
+          Center, i : integer;
+      begin
+{1}       if Left = Right then    { Base Case }
+{2}           if A[ Left ] > 0 then
+{3}               MaxSubSum := A[ Left ]
+              else
+{4}               MaxSubSum := 0
+          else
+          begin
+{5}           Center := ( Left + Right ) div 2;
+{6}           MaxLeftSum := MaxSubSum( A, Left, Center );
+{7}           MaxRightSum := MaxSubSum( A, Center + 1, Right );
+    
+{8}           MaxLeftBorderSum := 0; LeftBorderSum := 0;
+{9}           for i := Center downto Left do
+              begin
+{10}              LeftBorderSum := LeftBorderSum + A[ i ];
+{11}              if LeftBorderSum > MaxLeftBorderSum then
+{12}                  MaxLeftBorderSum := LeftBorderSum;
+              end;
+    
+{13}          MaxRightBorderSum := 0; RightBorderSum := 0;
+{14}          for i := Center + 1 to Right do
+              begin
+{15}              RightBorderSum := RightBorderSum + A[ i ];
+{16}              if RightBorderSum > MaxRightBorderSum then
+{17}                  MaxRightBorderSum := RightBorderSum;
+              end;
+    
+{18}          MaxSubSum := Max3( MaxLeftSum, MaxRightSum,
+                      MaxLeftBorderSum + MaxRightBorderSum );
+          end;
+      end;
+    
+      function MaxSubsequenceSum( var A : InputArray;
+                                      N : integer ) : integer;
+      begin
+          MaxSubsequenceSum := MaxSubSum( A, 1, N );
+      end;
+
+
+

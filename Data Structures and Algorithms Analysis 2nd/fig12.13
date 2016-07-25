@@ -1,0 +1,19 @@
+      
+      { Print the tree, watch out for NilNode, and skip header }
+      
+      procedure PrintTree( T : RedBlackTree );
+          procedure DoPrint( T : RedBlackTree );
+          begin
+              if T <> NilNode then
+              begin
+                  DoPrint( T^.Left );
+                  writeln( T^.Element );
+                  DoPrint( T^.Right );
+              end;
+          end;
+      begin
+          DoPrint( T^.Right );
+      end;
+      
+      
+      

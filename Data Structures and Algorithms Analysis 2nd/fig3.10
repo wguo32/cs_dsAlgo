@@ -1,0 +1,20 @@
+
+      { Return Position of X in L; nil if not Found }
+    
+      function Find( X : ElementType; L : List ) : Position;
+        label 999;
+        var
+          P : Position;
+      begin
+{1}       P := L^.Next;
+{2}       while P <> nil do
+{3}           if P^.Element = X then
+{4}               goto 999
+              else
+{5}               P := P^.Next;
+      999 : 
+{6}       Find := P;
+      end;
+
+
+

@@ -1,0 +1,14 @@
+
+      type
+          CoinSide = ( Heads, Tails );
+    
+      function Flip : CoinSide;
+      begin
+          if ( Random mod 2 ) = 0 then  { Use Least Significant Bit }
+              Flip := Heads
+          else
+              Flip := Tails;
+      end;
+
+
+

@@ -1,0 +1,19 @@
+
+      { Delete From A List. }
+    
+      procedure Delete( X : ElementType; L : List );
+        var
+          P, TmpCell : Position;
+      begin
+          P := FindPrevious( X, L );
+    
+          if CursorSpace[ P ].Next <> 0 then
+          begin
+              TmpCell := CursorSpace[ P ].Next;
+              CursorSpace[ P ].Next := CursorSpace[ TmpCell ].Next;
+              CursorDispose( TmpCell );    { Free The Space}
+          end;
+      end;
+
+
+

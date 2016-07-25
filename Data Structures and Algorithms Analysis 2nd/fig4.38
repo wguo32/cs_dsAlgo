@@ -1,0 +1,11 @@
+
+      function Height( P : AvlPtr ) : integer;
+      begin
+          if P = nil then
+              Height := -1
+          else
+              Height := P^.Height;
+      end;
+
+
+

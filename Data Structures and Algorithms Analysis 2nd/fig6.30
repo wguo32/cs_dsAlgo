@@ -1,0 +1,14 @@
+
+      function DeleteMin( var H : PriorityQueue ) : ElementType;
+        var
+          LeftHeap, RightHeap : PriorityQueue;
+      begin
+{1}       DeleteMin := H^.Element;
+{2}       LeftHeap  := H^.Left;
+{3}       RightHeap := H^.Right;
+{4}       dispose( H );
+{5}       H := Merge( LeftHeap, RightHeap );
+      end;
+
+
+

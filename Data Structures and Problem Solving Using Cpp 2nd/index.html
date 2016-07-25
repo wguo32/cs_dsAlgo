@@ -1,0 +1,353 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Mark A. Weiss">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (Win95; U) [Netscape]">
+   <title>Source Code for Data Structures and Problem Solving Using C++</title>
+</head>
+<body>
+
+<h1>
+Source Code for Data Structures and Problem Solving with C++, Second Edition</h1>
+
+<B>LAST UPDATE: September 4, 2013, after 13 years</B>
+<BR>
+
+<b>THIS CODE WAS WRITTEN ABOUT 15 YEARS AGO AND RECENT C++11 COMPILERS
+DO NOT ACCEPT SIGNIFICANT PARTS OF THE CODE THAT USE CERTAIN COMPILATION 
+FEATURES. CODE HAS BEEN MODIFIED
+SLIGHTLY FROM ORIGINAL TO REMOVE C++11 ERRORS, THOUGH CODE IS NOT
+UPDATED TO C++11. THESE ARE THE MAJOR EDITS:
+<OL>
+<LI>In some places when inheritance is used, either scoping or this->
+is used to access inherited members (both data or member functions)
+<LI>In some places, notably template return types in separate compilation
+units are used, the <tt>typename</tt> word is added.
+<LI>In some places, global scope (::) is used to access global functions
+that now clash with standard names (e.g. hash).
+</OL>
+</B>
+
+<p>Here is the source code for Data Structures and Algorithm Analysis in
+C++ (Second Edition), by Mark Allen Weiss. The materials here are copyrighted.
+I have successfully compiled and tested (most of) the programs under Borland
+5.0, 5.2, 5.3, Visual C++ 5.0 and 6.0, g++ 2.8.1. Several symbols control
+how the code is compiled:
+<br>&nbsp;
+<table BORDER COLS=2 WIDTH="100%" >
+<tr>
+<td WIDTH="10%"><tt>USE_DOT_H</tt></td>
+
+<td>If this symbol is defined, iostream.h is used instead of iostream</td>
+</tr>
+
+<tr>
+<td><tt>SAFE_STL</tt></td>
+
+<td>If this symbol is defined, the safe STL classes from the book are used.
+This is done by including StartConv.h and EndConv.h, which use #define
+to give the illusion that vector is declared as Vector, etc</td>
+</tr>
+</table>
+
+<h2>
+Compiler Bugs</h2>
+
+
+
+Jeffrey Walton has supplied some
+<A HREF="http://www.cs.fiu.edu/~weiss/Deltoid/workaround.html">common
+workarounds for C++ compilers</A>.
+
+<h3>
+VISUAL C++ 6.0</h3>
+
+<ol>
+<li>
+Incorrectly handles the scoping of variables declared in the <tt>for</tt>
+loop initialization expression.</li>
+
+<li>
+<B>[Fixed in Service Pack 3]</B>
+When the entire <tt>std</tt> namespace is imported, it appears there is
+a bug declaring input and output functions as friends. This shows up in
+the <tt>Rational</tt> examples. To fix, either do not use friends, or do
+not import the <tt>std</tt> namespace in its entirety (import only <tt>ostream</tt>
+and <tt>istream</tt>), or use fully qualified names.So the three options
+are:</li>
+
+<ol>
+<li>
+Implement <tt>operator&lt;&lt;</tt> by calling a public <tt>print</tt>
+member function</li>
+
+<li>
+<tt>using std::ostream</tt></li>
+
+<li>
+<tt>std::ostream &amp; operator&lt;&lt; ( std::ostream &amp; out, const
+Object &amp; x )</tt></li>
+</ol>
+
+<li>
+<tt>getline</tt> seems to be broken when used with <tt>cin</tt> (it is
+one line behind).I have provided <a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/getline.cpp">getline.cpp</a>
+that seems to work better.</li>
+
+<li>
+It does not occur in the code, but function templates occasionally do not
+get correctly expanded -- the compiler can get confused. It is best to
+place the functions in class templates if you can (You can make them static,
+but see the g++ bugs below!).</li>
+</ol>
+
+<h3>
+BORLAND 5.0 (there are several different releases; some or all have these
+bugs)</h3>
+
+<ol>
+<li>
+The <tt>push_back</tt> method for vector is inefficient because it expands
+by a fixed amount rather than doubling.</li>
+
+<li>
+iostream stuff does not seem to be in the <tt>std</tt> namespace. Fixed
+in 5.3 (??)</li>
+
+<li>
+Does not understand default template parameters, so many of the STL components
+require templates types that are normally optional. For instance, <tt>set</tt>
+requires that you supply <tt>less&lt;Comparable></tt>, as is done in the
+code.</li>
+
+<li>
+<tt>getline</tt> does not seem to work in 5.2 and lower (different bug
+than Visual 6.0!). I have provided <a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/getline.cpp">getline.cpp</a>
+that seems to work better.</li>
+</ol>
+
+<h3>
+g++ 2.8.1 and egs</h3>
+
+<ol>
+<li>
+Namespaces are not implemented. There is a hack so that <tt>using namespace
+std</tt>; is recognized by the compiler, but clearly the Standard Library
+is not really in a namespace.</li>
+
+<li>
+Static methods of class templates are not supported.</li>
+
+<li>
+Does not seem to know about <tt>istringstream</tt>. Instead, the older
+<tt>istrstream</tt>
+needs to be used.</li>
+</ol>
+
+<h3>
+Complete Bundle</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/code.zip">code.zip</a>
+(not available, but winzip reads tar files)
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/code.tar">code.tar</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/code.tar.gz">code.tar.gz</a>
+<h3>
+Global Utilities</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/StartConv.h">StartConv.h</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/EndConv.h">EndConv.h</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/getline.cpp">getline.cpp</a>
+<h3>
+Chapter 1: Arrays, Pointers, Structures</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/ArrayDemo.cpp">ArrayDemo.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/GetInts.cpp">GetInts.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestString.cpp">TestString.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestSwap.cpp">TestSwap.cpp</a>
+<h3>
+Chapter 2: Classes</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/IntCell.h">IntCell.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/IntCell.cpp">IntCell.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestIntCell.cpp">TestIntCell.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/BuggyIntCell.cpp">BuggyIntCell.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/DeepIntCell.cpp">DeepIntCell.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Rational.h">Rational.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Rational.cpp">Rational.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/RatMain.cpp">RatMain.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/mystring.h">mystring.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/string.cpp">string.cpp</a>
+<h3>
+Chapter 3: Templates</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/FuncTemplates.cpp">FuncTemplates.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/InsSort.cpp">InsSort.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/MemoryCell.h">MemoryCell.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/MemoryCell.cpp">MemoryCell.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestMemoryCell.cpp">TestMemoryCell.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Matrix.h">Matrix.h</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/vector.h">vector.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/vector.cpp">vector.cpp</a>
+<h3>
+Chapter 4: Inheritance</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Except.h">Except.h</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Shape.cpp">Shape.cpp</a>&nbsp;
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Hiding.cpp">Hiding.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/StaticBinding.cpp">StaticBinding.cpp</a>
+<h3>
+Chapter 5: Patterns</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Rectangle.cpp">Rectangle.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Wrapper.h">Wrapper.h</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Ambiguity.cpp">Ambiguity.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/AutoPtr.cpp">AutoPtr.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/StorageCell.h">StorageCell.h</a>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestStorageCell.cpp">TestStorageCell.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Iterator1.cpp">Iterator1.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Iterator2.cpp">Iterator2.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Iterator3.cpp">Iterator3.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/pair.h">pair.h</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Observer.cpp">Observer.cpp</a>
+<h3>
+Chapter 6: Running Times</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/MaxSum.cpp">MaxSum.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/BinarySearch.cpp">BinarySearch.cpp</a>
+<h3>
+Chapter 7: STL</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/vector.h">vector.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/vector.cpp">vector.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/functional.h">functional.h</a>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestFunctional.cpp">TestFunctional.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/algorithm.h">algorithm.h</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/SimpleSetDemo.cpp">SimpleSetDemo.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestPQ.cpp">TestPQ.cpp</a>
+<h3>
+Chapter 8: Recursion</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/RecSum.cpp">RecSum.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/PrintInt.cpp">PrintInt.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/BinarySearchRec.cpp">BinarySearchRec.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Ruler.java">Ruler.java</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/FractalStar.java">FractalStar.java</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Math.cpp">Math.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/MaxSum.cpp">MaxSum.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/MkChnge.cpp">MkChnge.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TicTacSlow.cpp">TicTacSlow.cpp</a>
+<h3>
+Chapter 9: Sorting</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Duplicate.cpp">Duplicate.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Sort.h">Sort.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestSort.cpp">TestSort.cpp</a>
+<h3>
+Chapter 10: Randomization</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Random.h">Random.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Random.cpp">Random.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/RandTest.cpp">RandTest.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Permute.cpp">Permute.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Math.cpp">Math.cpp</a>
+<h3>
+Chapter 11: Fun and Games</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/WordSrch.cpp">WordSrch.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TicTac.cpp">TicTac.cpp</a>
+<h3>
+Chapter 12: Applications of Stacks -- Compilers and Parsing</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Tokenizer.h">Tokenizer.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Tokenizer.cpp">Tokenizer.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Balance.cpp">Balance.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Infix.cpp">Infix.cpp</a>
+<h3>
+Chapter 13: Utilities</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Hzip.cpp">Hzip.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Tokenizer.h">Tokenizer.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Tokenizer.cpp">Tokenizer.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Xref.cpp">Xref.cpp</a>
+<h3>
+Chapter 14: Simulation</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Josephus.cpp">Josephus.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Modems.cpp">Modems.cpp</a>
+<h3>
+Chapter 15: Shortest Path Algorithms</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Paths.cpp">Paths.cpp</a>
+Note for DotNet users: on line 40 of PairingHeap.cpp, insert the word
+typename in front of the line so it appears as <tt>
+typename PairingHeap<Comparable>::Position</tt>
+<h3>
+Chapter 16: Stacks</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/StackAr.h">StackAr.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/StackAr.cpp">StackAr.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestStackAr.cpp">TestStackAr.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/StackLi.h">StackLi.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/StackLi.cpp">StackLi.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestStackLi.cpp">TestStackLi.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/QueueAr.h">QueueAr.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/QueueAr.cpp">QueueAr.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestQueueAr.cpp">TestQueueAr.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/QueueLi.h">QueueLi.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/QueueLi.cpp">QueueLi.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestQueueLi.cpp">TestQueueLi.cpp</a>
+<h3>
+Chapter 17: Linked Lists</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/LinkedList.h">LinkedList.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/LinkedList.cpp">LinkedList.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/SortLinkedList.h">SortLinkedList.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/SortLinkedList.cpp">SortLinkedList.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestLinkedList.cpp">TestLinkedList.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/list.h">list.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/list.cpp">list.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestList.cpp">TestList.cpp</a>
+<h3>
+Chapter 18: Trees</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/BinaryTree.h">BinaryTree.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/BinaryTree.cpp">BinaryTree.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Iterate.h">Iterate.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/Iterate.cpp">Iterate.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestBinaryTree.cpp">TestBinaryTree.cpp</a>
+<h3>
+Chapter 19: Search Trees</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/BinarySearchTree.h">BinarySearchTree.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/BinarySearchTree.cpp">BinarySearchTree.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestBinarySearchTree.cpp">TestBinarySearchTree.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/RedBlackTree.h">RedBlackTree.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/RedBlackTree.cpp">RedBlackTree.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestRedBlackTree.cpp">TestRedBlackTree.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/AATree.h">AATree.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/AATree.cpp">AATree.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestAATree.cpp">TestAATree.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/set.h">set.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/set.cpp">set.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestSet.cpp">TestSet.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/map.h">map.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/map.cpp">map.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestMap.cpp">TestMap.cpp</a>
+<h3>
+Chapter 20: Hash Tables</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/QuadraticProbing.h">QuadraticProbing.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/QuadraticProbing.cpp">QuadraticProbing.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestQuadraticProbing.cpp">TestQuadraticProbing.cpp</a>
+<h3>
+Chapter 21: Heaps</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/BinaryHeap.h">BinaryHeap.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/BinaryHeap.cpp">BinaryHeap.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestBinaryHeap.cpp">TestBinaryHeap.cpp</a>
+<br><a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/queue.h">queue.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/queue.cpp">queue.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestQueue.cpp">TestQueue.cpp</a>
+<h3>
+Chapter 22: Splay Trees</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/SplayTree.h">SplayTree.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/SplayTree.cpp">SplayTree.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestSplayTree.cpp">TestSplayTree.cpp</a>
+<h3>
+Chapter 23: Pairing Heaps</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/PairingHeap.h">PairingHeap.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/PairingHeap.cpp">PairingHeap.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestPairingHeap.cpp">TestPairingHeap.cpp</a>
+
+Note for DotNet users: on line 40 of PairingHeap.cpp, insert the word
+typename in front of the line so it appears as <tt>
+typename PairingHeap<Comparable>::Position</tt>
+
+<h3>
+Chapter 24: Disjoint Sets</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/DisjSets.h">DisjSets.h</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/DisjSets.cpp">DisjSets.cpp</a>&nbsp;
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/TestDisjSets.cpp">TestDisjSets.cpp</a>
+<h3>
+Appendix D: Primitive Arrays</h3>
+<a href="http://www.cs.fiu.edu/~weiss/adspc++2/code/PointerHopping.cpp">PointerHopping.cpp</a>
+</body>
+</html>

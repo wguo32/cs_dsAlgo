@@ -1,0 +1,23 @@
+
+      procedure Increment( var Value : integer );
+      begin
+          if Value = MaxQSize then
+              Value := 1
+          else
+              Value := Value + 1;
+      end;
+    
+      procedure Enqueue( X : ElementType; var Q : Queue );
+      begin
+          if IsFull( Q ) then
+              Error( 'Full queue' )
+          else
+          begin
+              Q.QSize := Q.QSize + 1;
+              Increment( Q.QRear );
+              Q.QArray[ Q.QRear ] := X;
+          end;
+      end;
+
+
+

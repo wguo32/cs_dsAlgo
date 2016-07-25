@@ -1,0 +1,39 @@
+      
+      { This is the basic operation to maintain order }
+      { Links First and Second together to satisfy heap order }
+      { Returns the resulting tree }
+      { First is assumed NOT nil }
+      { First^.NextSibling MUST be nil on entry }
+      
+      function CompareAndLink( First, Second : Position ) : Position;
+      begin
+          if Second = nil then
+              CompareAndLink := First
+          else
+          if First^.Element <= Second^.Element then
+          begin       { Attach Second as the leftmost child of First }
+              Second^.Prev := First;
+              First^.NextSibling := Second^.NextSibling;
+              if First^.NextSibling <> nil then
+                  First^.NextSibling^.Prev := First;
+              Second^.NextSibling := First^.LeftChild;
+              if Second^.NextSibling <> nil then
+                  Second^.NextSibling^.Prev := Second;
+              First^.LeftChild := Second;
+              CompareAndLink := First;
+          end
+          else
+          begin       { Attach First as the leftmost child of Second }
+              Second^.Prev := First^.Prev;
+              First^.Prev := Second;
+              First^.NextSibling := Second^.LeftChild;
+              if First^.NextSibling <> nil then
+                  First^.NextSibling^.Prev := First;
+              Second^.LeftChild := First;
+              CompareAndLink := Second;
+          end;
+      end;
+      
+      
+      
+      

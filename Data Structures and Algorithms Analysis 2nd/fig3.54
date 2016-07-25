@@ -1,0 +1,10 @@
+
+      procedure PrintList( L : List );    { Not Using A Header }
+{1}       if L <> nil then begin
+{2}           writeln( L^.Element );
+{3}           PrintList( L^.Next );
+          end;  { if }
+      end;  { PrintList }
+
+
+

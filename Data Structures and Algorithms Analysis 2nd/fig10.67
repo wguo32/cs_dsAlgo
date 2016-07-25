@@ -1,0 +1,34 @@
+
+      procedure FindHumanMove( var Board : BoardType;
+                               var BestMove, Value : integer );
+        var
+          Dc, i, Response : integer;  { Dc Means Don't care }
+      begin
+{1}       if FullBoard( Board ) then
+{2}           Value := Draw
+          else
+{3}       if ImmediateHumanWin( Board, BestMove ) then
+{4}           Value := CompLoss
+          else
+          begin
+{5}           Value := CompWin;
+{6}           for i := 1 to 9 do
+              begin
+{7}               if IsEmpty( Board, i ) then
+                  begin
+{8}                   Place( Board, i, Human );
+{9}                   FindCompMove( Board, Dc, Response );
+{10}                  Unplace( Board, i );
+    
+{11}                  if Response < Value then
+                      begin
+{12}                      Value := Response;
+{13}                      BestMove := i;
+                      end;
+                  end;
+              end;
+          end;
+      end;
+
+
+

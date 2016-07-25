@@ -1,0 +1,12 @@
+
+      function FindMax( T : SearchTree ) : TreePtr;
+      begin
+          if T <> nil then
+              while T^.Right <> nil do
+                  T := T^.Right;
+    
+          FindMax := T;
+      end;
+
+
+

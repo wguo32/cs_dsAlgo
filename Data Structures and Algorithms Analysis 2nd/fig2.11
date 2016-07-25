@@ -1,0 +1,17 @@
+
+      function Pow( X, N : integer ) : integer;
+      begin
+{1}       if N = 0 then
+{2}           Pow := 1
+          else
+{3}       if N = 1 then
+{4}           Pow := X
+          else
+{5}       if Even( N ) then
+{6}           Pow := Pow( X * X, N div 2 )
+          else
+{7}           Pow := Pow( X * X, N div 2 ) * X;
+      end;
+
+
+

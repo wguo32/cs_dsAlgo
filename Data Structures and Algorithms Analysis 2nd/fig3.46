@@ -1,0 +1,17 @@
+
+      procedure Pop( var S : Stack );
+        var
+          FirstCell : ^Node;
+      begin
+          if IsEmpty( S ) then
+              Error( 'empty stack' )
+          else
+          begin
+              FirstCell := S;
+              S := S^.Next;
+              dispose( FirstCell );
+          end;
+      end;
+
+
+

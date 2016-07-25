@@ -1,0 +1,49 @@
+      
+      procedure Remove( Item : ElementType; var T : AATree );
+      begin
+          if T <> NilNode then
+          begin
+              { Step 1: Search down the tree and set LastPtr and DeletePtr }
+              LastPtr := T;
+              if Item < T^.Element then
+                  Remove( Item, T^.Left )
+              else
+              begin
+                  DeletePtr := T;
+                  Remove( Item, T^.Right );
+              end;
+      
+              { Step 2: If at the Bottom of the tree and }
+              { Element is present, we remove it }
+              if T = LastPtr then
+              begin
+                  if (DeletePtr <> NilNode) and (Item = DeletePtr^.Element) then
+                  begin
+          
+                      DeletePtr^.Element := T^.Element;
+                      DeletePtr := NilNode;
+                      T := T^.Right;
+                      dispose( LastPtr );
+                  end;
+              end
+      
+              { Step 3: Otherwise, we are not at the bottom; rebalance. }
+              else
+                  if (T^.Left^.Level < T^.Level - 1) or
+                      (T^.Right^.Level < T^.Right^.Level - 1 ) then
+                  begin
+                      T^.Level := T^.Level - 1;
+                      if T^.Right^.Level > T^.Level then
+                          T^.Right^.Level := T^.Level;
+                      Skew( T );
+                      Skew( T^.Right );
+                      Skew( T^.Right^.Right );
+                      Split( T );
+                      Split( T^.Right );
+                  end;
+          end;
+      end;
+      
+      
+      
+      

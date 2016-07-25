@@ -1,0 +1,43 @@
+      
+      procedure Insert( Item : ElementType; var L : SkipList );
+        var
+          Current, NewNode : SkipPtr;
+      begin
+          Current := L;
+          Bottom^.Element := Item;
+          while Current <> Bottom do      { Iterate over each level }
+          begin
+              { Go across a level, as appropriate }
+              while Item > Current^.Element do
+                  Current := Current^.Right;
+      
+              { Now it's time to go down a level.  But first, }
+              { if Gap Size is 3 or at bottom level and must insert }
+              { then promote the middle element }
+              if Current^.Element > Current^.Down^.Right^.Right^.Element then
+              begin
+                  new( NewNode );
+                  NewNode^.Right := Current^.Right;
+                  NewNode^.Down := Current^.Down^.Right^.Right;
+                  Current^.Right := NewNode;
+                  NewNode^.Element := Current^.Element;
+                  Current^.Element := Current^.Down^.Right^.Element;
+              end;
+      
+              Current := Current^.Down;
+          end;
+      
+          { Raise height of DSL if necessary }
+          if L^.Right <> Tail then
+          begin
+              new( NewNode );
+              NewNode^.Down := L;
+              NewNode^.Right := Tail;
+              NewNode^.Element := Infinity;
+              L := NewNode;
+          end;
+      end;
+      
+      
+      
+      

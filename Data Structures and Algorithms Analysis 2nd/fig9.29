@@ -1,0 +1,15 @@
+
+      type
+          Vertex = 0 .. NumVertex;
+    
+          TableEntry = record
+              Header	 : List;	{ Adjacency List Header }
+              Known	 : boolean;
+              Dist	 : DistType;
+              Path	 : Vertex;
+          end;
+    
+          Table = array[ Vertex ] of TableEntry;
+
+
+

@@ -1,0 +1,8 @@
+
+      function IsEmpty ( var S : Stack ) : boolean;
+      begin
+          IsEmpty := ( S.TopOfStack = 0 );
+      end;
+
+
+

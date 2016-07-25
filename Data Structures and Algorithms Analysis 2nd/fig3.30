@@ -1,0 +1,16 @@
+
+      type
+          NodePtr = integer;
+    
+          Node = record
+              Element  : ElementType;
+              Next     : NodePtr;
+          end;
+    
+          List     = NodePtr;
+          Position = NodePtr;
+    
+      var CursorSpace : array[ 0..SpaceSize ] of Node;
+
+
+

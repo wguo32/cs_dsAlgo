@@ -1,0 +1,11 @@
+
+      procedure Dfs( V : Vertex );
+      begin
+          Visited[ V ] := true;
+          for Each W Adjacent to V do
+              if not Visited[ W ] then
+                  Dfs ( W );
+      end;
+
+
+

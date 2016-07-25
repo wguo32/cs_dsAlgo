@@ -1,0 +1,15 @@
+
+      type
+          SplayPtr	= ^SplayNode;
+    
+          SplayNode = record
+              Element	 : ElementType;
+              Left	 : SplayPtr;
+              Right	 : SplayPtr;
+              Parent	 : SplayPtr;
+          end;
+    
+          SearchTree	= SplayPtr;
+
+
+

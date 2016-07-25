@@ -1,0 +1,16 @@
+
+      type
+          TreePtr = ^TreeNode;
+    
+          TreeNode = record
+              Element   : ElementType;
+              LSib      : TreePtr;
+              RSib      : TreePtr;
+              FChild    : TreePtr;
+              Rank      : integer;
+          end;
+    
+          PriorityQueue	= TreePtr;
+
+
+

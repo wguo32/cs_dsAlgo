@@ -1,0 +1,10 @@
+
+{3}           i := Left + 1; j := Right - 2; { * }
+              repeat
+{4}               while A[ i ] < Pivot do i := i + 1;
+{5}               while A[ j ] > Pivot do j := j - 1;
+{6}               Swap( A[ i ], A[ j ] );
+{7}           until j <= i;
+
+
+

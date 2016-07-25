@@ -1,0 +1,11 @@
+
+      function Height( T : Tree ) : integer;
+      begin
+          if T = nil then
+              Height := -1
+          else
+              Height := 1 + Max( Height( T^.Left ), Height( T^.Right ) );
+      end;
+
+
+

@@ -1,0 +1,19 @@
+
+      function Eval( N : integer ) : real;
+        var
+          i : integer;
+          Sum : real;
+      begin
+          if N = 0 then
+              Eval := 1.0
+          else
+          begin
+              Sum := 0.0;
+              for i := 0 to N - 1 do
+                  Sum := Sum + Eval( i );
+              Eval := 2.0 * Sum / N + N;
+          end;
+      end;
+
+
+

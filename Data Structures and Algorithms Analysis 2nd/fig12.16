@@ -1,0 +1,49 @@
+      
+      procedure Insert( Item : ElementType; var T : RedBlackTree );
+        var
+          X, P, GP, GGP : RedBlackPtr;
+      
+          procedure HandleReorient;
+          begin
+              X^.Color := Red;             { Do the color flip }
+              X^.Left^.Color := Black;
+              X^.Right^.Color := Black;
+      
+              if P^.Color = Red then       { Have to rotate }
+              begin
+                  GP^.Color := Red;
+                  if (Item < GP^.Element) <> (Item < P^.Element) then
+                      P := Rotate( Item, GP ); { Start double rotation }
+                  X := Rotate( Item, GGP );
+                  X^.Color := Black;
+              end;
+              T^.Right^.Color := Black;    { Make root black }
+          end;
+      
+      begin
+          X := T; P := X; GP := X;
+          repeat             { Descend down the tree }
+              GGP := GP; GP := P; P := X;
+              if Item < X^.Element then
+                  X := X^.Left
+              else
+                  X := X^.Right;
+              if (X^.Left^.Color = Red) and (X^.Right^.Color = Red) then
+                  HandleReorient;
+          until (X = NilNode) or (Item = X^.Element);
+      
+          if Item <> X^.Element then           { Make the new node }
+          begin
+              new( X ); X^.Element := Item;
+              X^.Left := NilNode; X^.Right := NilNode;
+              if Item < P^.Element then    { Attach to its parent }
+                  P^.Left := X
+              else
+                  P^.Right := X;
+              HandleReorient;              { Color it red; maybe rotate }
+          end;
+      end;  { Insert }
+      
+      
+      
+      

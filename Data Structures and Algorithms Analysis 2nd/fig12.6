@@ -1,0 +1,49 @@
+      
+      { Top-down Splay procedure, not requiring Item to be in the tree }
+      
+      procedure Splay( Item : ElementType; var X : SplayPtr );
+        label 99;
+        var
+          LeftTreeMax, RightTreeMin : SplayPtr;
+      begin
+          Header^.Left := NilNode;
+          Header^.Right := NilNode;
+          LeftTreeMax := Header;
+          RightTreeMin := Header;
+          NilNode^.Element := Item;
+      
+          while Item <> X^.Element do
+          begin
+              if Item < X^.Element then
+              begin
+                  if Item < X^.Left^.Element then
+                      RotateWithLeftChild( X );
+                  if X^.Left = NilNode then
+                      goto 99;
+                  { Link Right }
+                  RightTreeMin^.Left := X;
+                  RightTreeMin := X;
+                  X := X^.Left;
+              end
+              else
+              begin
+                  if Item > X^.Right^.Element then
+                      RotateWithRightChild( X );
+                  if X^.Right = NilNode then
+                      goto 99;
+                  { Link Left }
+                  LeftTreeMax^.Right := X;
+                  LeftTreeMax := X;
+                  X := X^.Right;
+              end;
+          end;  { while Item <> X^.Element }
+      99:
+          { Reassemble }
+          LeftTreeMax^.Right := X^.Left;
+          RightTreeMin^.Left := X^.Right;
+          X^.Left := Header^.Right;
+          X^.Right := Header^.Left;
+      end; { procedure Splay }
+      
+      
+      

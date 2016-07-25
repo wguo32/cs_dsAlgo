@@ -1,0 +1,15 @@
+
+      procedure Insert( Key : ElementType; var H : HashTable );
+        var
+          Pos : Position;
+      begin
+          Pos := Find( Key, H );
+          if H[ Pos ].Info <> Legitimate then	{ Ok to Insert Here }
+          begin
+              H[ Pos ].Info := Legitimate;
+              H[ Pos ].Element := Key;
+          end;
+      end;
+
+
+

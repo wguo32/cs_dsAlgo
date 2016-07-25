@@ -1,0 +1,41 @@
+
+      procedure PercDown( var A : InputData; i, N : integer );
+        label 999;
+        var
+          Child   : integer;
+          Tmp     : InputType;
+      begin
+{1}       Tmp := A[ i ];
+{2}       while i * 2 <= N do
+          begin
+{3}           Child := i * 2;
+{4}           if Child <> N then
+{5}               if A[ Child + 1 ] > A[ Child ] then
+{6}                   Child := Child + 1;
+{7}           if Tmp < A[ Child ] then
+              begin
+{8}               A[ i ] := A[ Child ];
+{9}               i := Child;
+              end
+              else    { Force Exit From while Loop }
+{10}              goto 999;
+          end;
+      999 :
+{11}      A[ i ] := Tmp;
+      end;
+    
+      procedure Heapsort( var A : InputData; N : integer );
+          var i : integer;
+      begin
+{1}       for i := N div 2 downto 1 do  { BuildHeap }
+{2}           PercDown( A, i, N );
+    
+{3}       for i := N downto 2 do
+          begin
+{4}           Swap( A[ 1 ], A[ i ] );  { DeleteMax }
+{5}           PercDown( A, 1, i - 1 );
+          end;
+      end;
+
+
+

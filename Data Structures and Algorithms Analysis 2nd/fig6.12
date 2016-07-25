@@ -1,0 +1,38 @@
+
+      function DeleteMin( var H : PriorityQueue ) : ElementType;
+        var
+          i, Child        : integer;
+          LastElement     : ElementType;
+          StopPerc        : boolean;
+      begin
+{1}       if IsEmpty( H ) then
+{2}           Error( 'Priority queue is empty' )
+          else
+          begin
+{3}           DeleteMin := H.Element[ 1 ];
+{4}           LastElement := H.Element[ H.Size ];
+{5}           H.Size := H.Size - 1;
+    
+{6}           i := 1; StopPerc := FALSE;
+{7}           while ( i * 2 <= H.Size ) and ( not StopPerc ) do
+              begin
+{8}               Child := i * 2;        { Find Smaller Child }
+{9}               if Child <> H.Size then
+{10}                  if H.Element[ Child + 1 ] < H.Element[ Child ] then
+{11}                      Child := Child + 1;
+    
+{12}              if LastElement > H.Element[ Child ] then { Percolate }
+                  begin
+{13}                  H.Element[ i ] := H.Element[ Child ];
+{14}                  i := Child;
+                  end
+                  else            { Force Exit From while Loop }
+{15}                  StopPerc := true;
+              end;	{ while }
+{16}          H.Element[ i ] := LastElement;
+    
+          end;	{ if not Empty }
+      end;  { DeleteMin }
+
+
+

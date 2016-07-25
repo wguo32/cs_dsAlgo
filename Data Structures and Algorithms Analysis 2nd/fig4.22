@@ -1,0 +1,30 @@
+
+      procedure Insert( X : ElementType; var T : SearchTree );
+      begin
+          if T = nil then
+          begin
+              { Create and Return A One Node Tree }
+    
+              new( T );
+              if T = nil then
+                  FatalError( 'Out of space !!!' )
+              else
+              begin
+                  T^.Element := X;
+                  T^.Left := nil;
+                  T^.Right := nil;
+              end;
+          end	{ if T = nil }
+          else
+          begin
+              if X < T^.Element then
+                  Insert( X, T^.Left )
+              else
+              if X > T^.Element then
+                  Insert( X, T^.Right );
+              { else X Is in The Tree Already.  We'll do nothing }
+          end;
+      end;	{ Insert }
+
+
+

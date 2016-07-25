@@ -1,0 +1,17 @@
+
+      procedure InitTable( Start : Vertex; var G : Graph;
+                                           var T : Table );
+        var
+          i : integer;
+      begin
+          ReadGraph( G, T );          { read Graph Somehow }
+          for i := 1 to NumVertex do begin
+              T[ i ].Known := false;
+              T[ i ].Dist  := MAXINT;
+              T[ i ].Path  := 0;
+          end;
+          T[ Start ].Dist := 0;
+      end;
+
+
+

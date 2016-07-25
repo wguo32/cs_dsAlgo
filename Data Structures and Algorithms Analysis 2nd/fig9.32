@@ -1,0 +1,25 @@
+
+      procedure Dijkstra( var T : Table );
+        var
+          i : integer;
+          V, W : Vertex;
+      begin
+{1}       for i := 1 to NumVertex do begin
+{2}           V := Smallest Unknown Distance Vertex;
+{3}           T[ V ].Known := true;
+{4}           for Each W Adjacent to V do
+{5}               if not T[ W ].Known then
+                  begin
+{6}                   if T[ V ].Dist + C( V,W ) < T[ W ].Dist then
+                      begin
+                          { Update W }
+{7}                       Decrease T[ W ].Dist to
+                                   T[ V ].Dist + C( V,W );
+{8}                       T[ W ].Path := V;
+                      end;
+                  end;
+          end;
+      end;
+
+
+

@@ -1,0 +1,25 @@
+
+      function BinarySearch( var A : InputArray; X : InputType;
+                                 N : integer ) : integer;
+        var
+          Low, Mid, High : integer;
+      begin
+{1}       A[ 0 ] := X;
+{2}       Low := 1;
+{3}       High := N;
+      
+          repeat
+{4}           Mid := ( Low + High ) div 2;
+{5}           if Low > High then
+{6}               Mid := 0
+{7}           else if A[ Mid ] < X then
+{8}               Low := Mid + 1
+{9}           else
+{10}              High := Mid - 1;
+{11}      until ( A[ Mid ] = X );
+    
+{12}      BinarySearch := Mid;
+      end;
+
+
+

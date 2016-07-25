@@ -1,0 +1,16 @@
+
+      procedure AddPolynomial( var Poly1, Poly2, PolySum : Polynomial );
+        var
+          i : integer;
+    
+      begin
+          ZeroPolynomial( PolySum );
+          PolySum.HighPower := Max( Poly1.HighPower, Poly2.HighPower );
+    
+          for i := PolySum.HighPower downto 0 do
+              PolySum.CoeffArray[ i ] := Poly1.CoeffArray[ i ]
+                                          + Poly2.CoeffArray[ i ]
+      end;
+
+
+

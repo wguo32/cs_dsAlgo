@@ -1,0 +1,26 @@
+
+      { Assume T Is Initialized ( Fig 9.30 ) }
+      procedure Unweighted( var T : Table );
+        var
+          V, W : Vertex;
+          Q : Queue;
+      begin
+{1}       MakeEmpty( Q );
+{2}       Enqueue( S, Q );  { Enqueue Start Vertex, Determined Elsewhere }
+    
+{3}       while not IsEmpty( Q ) do
+          begin
+{4}           V := Dequeue( Q );
+{5}           T[ V ].Known := true;  { Not Really Needed Anymore }
+{6}           for Each W Adjacent to V do
+{7}               if T[ W ].Dist = MAXINT then
+                  begin
+{8}                   T[ W ].Dist := T[ V ].Dist + 1;
+{9}                   T[ W ].Path := V;
+{10}                  Enqueue( W, Q );
+                  end;
+          end;
+      end;
+
+
+

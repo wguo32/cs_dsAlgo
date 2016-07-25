@@ -1,0 +1,288 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="Author" content="Mark A. Weiss">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (Win98; U) [Netscape]">
+   <title>Source Code for Data Structures and Problem Solving Using Java (Fourth Edition)</title>
+</head>
+<body>
+
+<h1>
+Source Code for Data Structures and Problem Solving Using Java, Fourth
+Edition</h1>
+<b>LAST UPDATE: September 1, 2009</b>
+<br><b>BUG REPORTS ARE APPRECIATED!!</b>
+<p>Here is the source code for Data Structures and Algorithm Analysis in
+Java (Fourth Edition), by Mark Allen Weiss. The materials here are copyrighted.
+I have successfully compiled and tested the programs
+with JDK 1.6.0 update 11.
+<h2>
+Organization of Files</h2>
+
+<ol>
+<li>
+Most of the general, standalone, code is in the root directory.</li>
+
+<li>
+There is an implementation of a large subset of java.util in package <tt>weiss.util</tt>.
+Its purpose is to illustrate how the concepts are used in an actual library
+implementation. This can be found in the <b><tt>weiss\util</tt></b> folder.
+Some of the sample code imports classes in <tt>weiss.util</tt>, but you
+can freely replace all occurrences of <tt>weiss.util</tt> with <tt>java.util</tt>.
+Needless to say, everything in <tt>weiss.util</tt> has a name clash with
+<tt>java.util</tt>,
+so you should not use wild-card import directives. These files are displayed
+in <b><font color="#000000">BOLDFACE</font></b> font.</li>
+
+<li>
+The package <b>weiss.nonstandard</b>, in the <b>weiss\nonstandard</b> folder,
+contains nonstandard implementations of various data structures. The code
+is generally simpler that the code in the Java Collections API, and
+there are occasional name clashes (e.g. <tt>LinkedList</tt> and <tt>Stack</tt>).
+This package also contains priority queue implementations, since that is
+not part of the Java Collections API. These files are display in <i>ITALICS</i>
+font.</li>
+</ol>
+
+<!--
+<h3>
+CLASSPATH Info</h3>
+The code in the root directory should automatically compile if there is
+no <tt>CLASSPATH</tt>. Other code will be trickier to compile/run unless
+you use full names relative to the root directory. Otherwise, the easiest
+fix is to make sure that the root directory (i.e. the directory in which
+the <tt>weiss</tt> folder is found) is on your <tt>CLASSPATH</tt>, along
+with<b><tt> .</tt></b>. Let us assume you have extracted everything into
+the <tt>bookcode</tt> folder.
+<ul>
+<li>
+For MS-DOS: <b><tt>set CLASSPATH=C:\bookcode;.</tt></b></li>
+
+<li>
+For Unix: <b><tt>setenv CLASSPATH bookcode:.</tt></b></li>
+</ul>
+Note that case-sensitivity may matter, and there is a difference between
+colons and semicolons.
+<br>If you are using an IDE, you will need to update the <tt>CLASSPATH</tt>
+using the IDE's own mechanism.
+<h4>Jar files</h4>
+An alternative is to install these two jar files
+(<A HREF="wutil.jar">wutil.jar</A> and
+<A HREF="wnonstandard.jar">wnonstandard.jar</A>) in the
+Java extensions directory.
+A typical location would be
+<tt>C:\jdk1.5.0\jre\lib\ext</tt>.
+Once this is done, you can run any of the programs that require
+<tt>weiss.util</tt> or <tt>weiss.nonstandard</tt> from pretty much
+any location.
+(This is every program in the main distribution directory, except
+<tt>MyContainerTest.java</tt>).
+-->
+<h3>
+Complete Bundle</h3>
+<a href="../code.zip">code.zip</a>
+<h3>
+Package Documentation</h3>
+<a href="../docs/index.html">docs</a>
+<br><a href="../docs.zip">docs.zip</a>
+
+
+<h3>
+Chapter 1: Basic Java</h3>
+<a href="FirstProgram.java">FirstProgram.java</a>
+<br><a href="MinTest.java">MinTest.java</a>
+<br><a href="OperatorTest.java">OperatorTest.java</a>
+<h3>
+Chapter 2: References</h3>
+<a href="RandomNumbers.java">RandomNumbers.java</a>
+<br><a href="ReadStrings.java">ReadStrings.java</a>
+<br><a href="ReadStringsWithArrayList.java">ReadStringsWithArrayList.java</a>
+<br><a href="MatrixDemo.java">MatrixDemo.java</a>
+<br><a href="Echo.java">Echo.java</a>
+<br><a href="ForeachDemo.java">ForeachDemo.java</a>
+<br><a href="DivideByTwo.java">DivideByTwo.java</a>
+<br><a href="MaxTest.java">MaxTest.java</a>
+<br><a href="ListFiles.java">ListFiles.java</a>
+<br><a href="DoubleSpace.java">DoubleSpace.java</a>
+<h3>
+Chapter 3: Classes</h3>
+<a href="IntCell.java">IntCell.java</a> <a href="TestIntCell.java">TestIntCell.java</a>
+<br><a href="Date.java">Date.java</a>
+<br><a href="Ticket.java">Ticket.java</a>
+<br><a href="Squares.java">Squares.java</a>
+<br><a href="weiss/math/BigRational.java">BigRational.java</a>
+<br><a href="StringArrayList.java">StringArrayList.java</a>
+<a href="ReadStringsWithStringArrayList.java">ReadStringsWithStringArrayList.java</a>
+<h3>
+Chapter 4: Inheritance</h3>
+<b><font color="#000000"><a href="weiss/util/ConcurrentModificationException.java">ConcurrentModificationException.java</a></font></b>
+<B><a href="weiss/util/EmptyStackException.java">EmptyStackException.java</a></font></b>
+<b><font color="#000000"><a href="weiss/util/NoSuchElementException.java">NoSuchElementException.java</a></font></b>
+<br><a href="DecoratorDemo.java">DecoratorDemo.java</a>
+<br><a href="PersonDemo.java">PersonDemo.java</a>
+<br><a href="Shape.java">Shape.java</a>
+<a href="Circle.java">Circle.java</a>
+<a href="Rectangle.java">Rectangle.java</a>
+<a href="ShapeDemo.java">ShapeDemo.java</a>
+<a href="StretchDemo.java">StretchDemo.java</a>
+<a href="Stretchable.java">Stretchable.java</a>
+<br><a href="MemoryCell.java">MemoryCell.java</a>
+<a href="TestMemoryCell.java">TestMemoryCell.java</a>
+<br><a href="SimpleArrayList.java">SimpleArrayList.java</a>
+<a href="ReadStringsWithSimpleArrayList.java">ReadStringsWithSimpleArrayList.java</a>
+<br><a href="WrapperDemo.java">WrapperDemo.java</a>
+<br><a href="StorageCellDemo.java">StorageCellDemo.java</a>
+<br><a href="FindMaxDemo.java">FindMaxDemo.java</a>
+
+
+<br><a href="GenericMemoryCell.java">GenericMemoryCell.java</a>
+<a href="TestGenericMemoryCell.java">TestGenericMemoryCell.java</a>
+<br><a href="GenericSimpleArrayList.java">GenericSimpleArrayList.java</a>
+<a href="ReadStringsWithGenericSimpleArrayList.java">ReadStringsWithGenericSimpleArrayList.java</a>
+<br><a href="BoxingDemo.java">BoxingDemo.java</a>
+<br><a href="GenericFindMaxDemo.java">GenericFindMaxDemo.java</a>
+
+<br><a href="weiss/util/Comparator.java">Comparator.java</a></b> <a href="SimpleRectangle.java">SimpleRectangle.java</a>
+<a href="CompareTest.java">CompareTest.java</a>
+<a href="CompareTestInner1.java">CompareTestInner1.java</a>
+<a href="CompareTestInner2.java">CompareTestInner2.java</a>
+<a href="CompareTestInner3.java">CompareTestInner3.java</a>
+<br><a href="StaticParamsDemo.java">StaticParamsDemo.java</a>
+<br><a href="BadEqualsDemo.java">BadEqualsDemo.java</a>
+
+<h3>
+Chapter 5: Running Times</h3>
+<a href="MaxSumTest.java">MaxSumTest.java</a>
+<br><a href="BinarySearch.java">BinarySearch.java</a>
+<h3>
+Chapter 6: The Collections API</h3>
+<i><a href="weiss/nonstandard/Stack.java">Stack.java</a></i>
+<br><i><a href="weiss/nonstandard/UnderflowException.java">UnderflowException.java</a></i>
+<br><i><a href="weiss/nonstandard/Queue.java">Queue.java</a></i>
+<br><b><a href="weiss/util/Collection.java">Collection.java</a></b>
+<br><b><a href="weiss/util/Iterator.java">Iterator.java</a>, extends java.util.Iterator</b>
+<br><b><a href="weiss/util/Collections.java">Collections.java</a></b>
+<br><b><a href="weiss/util/Arrays.java">Arrays.java</a></b>
+<br><b><a href="weiss/util/List.java">List.java</a></b>
+<br><b><a href="weiss/util/ListIterator.java">ListIterator.java</a></b>
+<br><b><a href="TestArrayList.java">TestArrayList.java</a></b>
+<br><b><a href="weiss/util/Set.java">Set.java</a></b>
+<br><b><a href="weiss/util/SortedSet.java">SortedSet.java</a></b>
+<br><b><a href="TreeSetDemo.java">TreeSetDemo.java</a></b>
+<br><a href="IteratorTest.java">IteratorTest.java</a>
+<br><a href="EqualsWithInheritance.java">EqualsWithInheritance.java</a>
+<br><a href="DuplicateFinder.java">DuplicateFinder.java</a>
+<br><b><a href="weiss/util/Map.java">Map.java</a></b> <a href="MapDemo.java">MapDemo.java</a>
+<br><b><a href="weiss/util/Queue.java">Queue.java</a></i>
+<br><a href="PriorityQueueDemo.java">PriorityQueueDemo.java</a>
+<h3>
+Chapter 7: Recursion</h3>
+<a href="RecSum.java">RecSum.java</a>
+<br><a href="PrintInt.java">PrintInt.java</a>
+<br><a href="Factorial.java">Factorial.java</a>
+<br><a href="BinarySearchRecursive.java">BinarySearchRecursive.java</a>
+<br><a href="Ruler.java">Ruler.java</a>
+<br><a href="FractalStar.java">FractalStar.java</a>
+<br><a href="Numerical.java">Numerical.java</a> <a href="RSA.java">RSA.java</a>
+<br><a href="MaxSumTest.java">MaxSumTest.java</a>
+<br><a href="MakeChange.java">MakeChange.java</a>
+<br><a href="Best.java">Best.java</a> <a href="TicTacToeSlow.java">TicTacToeSlow.java</a>
+<a href="TicTacMainSlow.java">TicTacMainSlow.java</a>
+<h3>
+Chapter 8: Sorting</h3>
+<a href="DuplicateTest.java">DuplicateTest.java</a>
+<br><a href="Sort.java">Sort.java</a> <a href="TestSort.java">TestSort.java</a>
+<h3>
+Chapter 9: Randomization</h3>
+<b><a href="weiss/util/Random.java">Random.java</a></b>
+<br><a href="Numerical.java">Numerical.java</a> <a href="RSA.java">RSA.java</a>
+<h3>
+Chapter 10: Fun and Games</h3>
+<a href="WordSearch.java">WordSearch.java</a>
+<a href="puz.txt">puz.txt</a>
+<br><a href="Best.java">Best.java</a> <a href="TicTacToe.java">TicTacToe.java</a>
+<a href="TicTacMain.java">TicTacMain.java</a>
+<h3>
+Chapter 11: Applications of Stacks -- Compilers and Parsing</h3>
+<a href="Tokenizer.java">Tokenizer.java</a> <a href="Balance.java">Balance.java</a>
+<br><a href="Evaluator.java">Evaluator.java</a>
+<h3>
+Chapter 12: Utilities</h3>
+<a href="Hzip.java">Hzip.java</a> <a href="HZIPInputStream.java">HZIPInputStream.java</a>
+<a href="HZIPOutputStream.java">HZIPOutputStream.java</a>
+<br><a href="Tokenizer.java">Tokenizer.java</a> <a href="Xref.java">Xref.java</a>
+<h3>
+Chapter 13: Simulation</h3>
+<a href="Josephus.java">Josephus.java</a>
+<br><a href="CallSim.java">CallSim.java</a>
+<h3>
+Chapter 14: Shortest Path Algorithms</h3>
+<a href="Graph.java">Graph.java</a> <a href="graph1.txt">graph1.txt</a>
+<a href="graph2.txt">graph2.txt</a> <a href="graph3.txt">graph3.txt</a>
+<h3>
+Chapter 15: Inner Classes and ArrayList Implementation</h3>
+
+<a href="MyContainerTest.java">MyContainerTest.java</a>
+<a href="weiss/ds/Iterator.java">Iterator.java</a>
+<a href="weiss/ds/MyContainer.java">MyContainer.java</a>
+
+<br><b><a href="weiss/util/AbstractCollection.java">AbstractCollection.java</a></b>
+<br><b><a href="weiss/util/ArrayList.java">ArrayList.java</a></b>
+<h3>
+Chapter 16: Stacks</h3>
+<i><a href="weiss/nonstandard/UnderflowException.java">UnderflowException.java</a></i>
+<br><i><a href="weiss/nonstandard/ArrayStack.java">ArrayStack.java</a></i>
+<br><i><a href="weiss/nonstandard/ListNode.java">ListNode.java</a></i>
+<br><i><a href="weiss/nonstandard/ListStack.java">ListStack.java</a></i>
+<br><i><a href="weiss/nonstandard/ArrayQueue.java">ArrayQueue.java</a></i>
+<br><i><a href="weiss/nonstandard/ListQueue.java">ListQueue.java</a></i>
+<br><b><a href="weiss/util/EmptyStackException.java">EmptyStackException</a></b>
+<b><a href="weiss/util/Stack.java">Stack.java</a></b>
+<h3>
+Chapter 17: Linked Lists</h3>
+<i><a href="weiss/nonstandard/ListNode.java">ListNode.java</a></i> <i><a href="weiss/nonstandard/LinkedList.java">LinkedList.java</a></i>
+<br><i><a href="weiss/nonstandard/LinkedListIterator.java">LinkedListIterator.java</a></i>
+<br><i><a href="weiss/nonstandard/SortedLinkedList.java">SortedLinkedList.java</a></i>
+<br><b><a href="weiss/util/LinkedList.java">LinkedList.java</a></b>
+<h3>
+Chapter 18: Trees</h3>
+<a href="FileSystem.java">FileSystem.java</a>
+<br><a href="BinaryNode.java">BinaryNode.java</a> <a href="BinaryTree.java">BinaryTree.java</a>
+<br> <a href="TestTreeIterators.java">TestTreeIterators.java</a>
+<h3>
+Chapter 19: Search Trees</h3>
+<i><a href="weiss/nonstandard/DuplicateItemException.java">DuplicateItemException.java</a></i>
+<i><a href="weiss/nonstandard/BinaryNode.java">BinaryNode.java</a></i>
+<i><a href="weiss/nonstandard/BinarySearchTree.java">BinarySearchTree.java</a></i>
+<br><i><a href="weiss/nonstandard/BinarySearchTreeWithRank.java">BinarySearchTreeWithRank.java</a></i>
+<br><i><a href="weiss/nonstandard/Rotations.java">Rotations.java</a></i>
+<br><i><a href="weiss/nonstandard/RedBlackTree.java">RedBlackTree.java</a></i>
+<br><i><a href="weiss/nonstandard/AATree.java">AATree.java</a></i>
+<br><b><a href="weiss/util/Set.java">Set.java</a></b> <b><a href="weiss/util/TreeSet.java">TreeSet.java</a></b>
+<br><b><a href="weiss/util/MapImpl.java">MapImpl.java</a></b> <b><a href="weiss/util/TreeMap.java">TreeMap.java</a></b>
+<h3>
+Chapter 20: Hash Tables</h3>
+<b><a href="weiss/util/HashSet.java">HashSet.java</a></b>
+<br><b><a href="weiss/util/MapImpl.java">MapImpl.java</a></b> <b><a href="weiss/util/HashMap.java">HashMap.java</a></b>
+<h3>
+Chapter 21: Heaps</h3>
+<b><a href="weiss/util/PriorityQueue.java">PriorityQueue.java</a></i>
+<h3>
+Chapter 22: Splay Trees</h3>
+<i><a href="weiss/nonstandard/SplayTree.java">SplayTree.java</a></i>
+<h3>
+Chapter 23: Pairing Heaps</h3>
+<i><a href="weiss/nonstandard/IllegalValueException.java">IllegalValueException.java</a></i>
+<i><a href="weiss/nonstandard/PairingHeap.java">PairingHeap.java</a></i>
+<h3>
+Chapter 24: Disjoint Sets</h3>
+<i><a href="weiss/nonstandard/DisjointSetsSlow.java">DisjointSetsSlow.java</a></i>
+<br><i><a href="weiss/nonstandard/DisjointSets.java">DisjointSets.java</a></i>
+<h3>
+Appendix D: Swing</h3>
+<a href="BasicGUI.java">BasicGUI.java</a>
+<br><a href="BorderTest.java">BorderTest.java</a>
+<br>&nbsp;
+</body>
+</html>

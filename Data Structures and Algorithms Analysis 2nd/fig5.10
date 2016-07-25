@@ -1,0 +1,23 @@
+
+      procedure Insert( Key : ElementType; var H : HashTable );
+        var
+          Pos, List, NewCell : Position;
+      begin
+{1}       Pos := Find( Key, H );
+{2}       if Pos = nil then        { Key Is not Found }
+          begin
+{3}           new( NewCell );
+{4}           if NewCell = nil then
+{5}               FatalError( 'Out of space !!!' )
+              else
+              begin
+{6}               List := H[ Hash( Key ) ];
+{7}               NewCell^.Next := List^.Next;
+{8}               NewCell^.Element := Key;
+{9}               List^.Next := NewCell;
+              end;
+          end;
+      end;
+
+
+

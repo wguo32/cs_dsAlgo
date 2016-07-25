@@ -1,0 +1,24 @@
+
+      procedure MSort( var A, TmpArray : InputData;
+                           Left, Right : integer );
+        var
+          Center : integer;
+      begin
+          if Left < Right then
+          begin
+              Center := ( Left + Right ) div 2;
+              MSort( A, TmpArray, Left, Center );
+              MSort( A, TmpArray, Center + 1, Right );
+              Merge(  A, TmpArray, Left, Center + 1, Right );
+          end;
+      end;
+    
+      procedure Mergesort( var A : InputData ; N : integer );
+        var
+          TmpArray : InputData;
+      begin
+          MSort( A, TmpArray, 1, N );
+      end;
+
+
+

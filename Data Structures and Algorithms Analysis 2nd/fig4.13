@@ -1,0 +1,14 @@
+
+      type
+          TreePtr = ^TreeNode;
+    
+          TreeNode = record
+              Element : ElementType;
+              Left    : TreePtr;
+              Right   : TreePtr;
+          end;
+    
+          Tree = TreePtr;
+
+
+

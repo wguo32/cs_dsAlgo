@@ -1,0 +1,22 @@
+
+      function Fibonacci( N : integer ) : integer;
+        var
+          i, Last, NextToLast, Answer : integer;
+      begin
+          if ( N = 0 ) or ( N = 1 ) then
+              Answer := 1
+          else
+          begin
+              Last := 1; NextToLast := 1;
+              for i := 2 to N do
+              begin
+                  Answer := Last + NextToLast;
+                  NextToLast := Last;
+                  Last := Answer;
+              end;
+          end;
+          Fibonacci := Answer;
+      end;
+
+
+

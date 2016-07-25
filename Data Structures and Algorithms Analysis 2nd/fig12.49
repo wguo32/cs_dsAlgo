@@ -1,0 +1,60 @@
+      
+      procedure DeleteMin( var MinItem : ItemType; var H : KdHeap;
+                              WhichKey : integer );
+        label 999;
+        var
+          i : integer;
+          BranchingKey : integer;
+          MinChild, Current : integer;
+      begin
+          if H.Size = 0 then
+              writeln( 'Error -- empty kd heap' )
+          else
+          begin
+              Current := FindMin( H, WhichKey );
+      
+              MinItem := H.Element[ Current ];
+              H.Element[ Current ] := H.Element[ H.Size ];
+              H.Element[ H.Size ] := InfItem;    { Restore a sentinel at bottom }
+              H.Size := H.Size - 1;
+              BranchingKey := GetBranching( Current );
+      
+              while Current * 2 <= H.Size do
+              begin         { Find smallest child/grandchild }
+                  if LessThan( H.Element[ 2 * Current ],
+                               H.Element[ 2 * Current + 1 ],
+                               BranchingKey ) then
+                      MinChild := 2 * Current
+                  else
+                      MinChild := 2 * Current + 1;
+      
+                  if Current * 4 < MaxSize then
+                      for i := Current * 4 to Current * 4 + 3 do
+                          if LessThan( H.Element[ i ],
+                                       H.Element[ MinChild ],
+                                       BranchingKey ) then
+                              MinChild := i;
+                  if LessThan( H.Element[ Current ],
+                               H.Element[ MinChild ],
+                               BranchingKey ) then
+                      goto 999;
+      
+                  Swap( H.Element[ Current ], H.Element[ MinChild ] );
+                  if MinChild < Current * 4 then  { MinChild is a child }
+                      BranchingKey := 3 - BranchingKey
+                  else                       { MinChild is a grandchild }
+                  if LessThan( H.Element[ MinChild ],
+                               H.Element[ MinChild div 2 ],
+                               3 - BranchingKey ) then
+                      Swap( H.Element[ MinChild ],
+                            H.Element[ MinChild div 2 ] );
+      
+                  Current := MinChild;
+              end;
+          end;
+      999: ;
+      end;
+      
+      
+      
+      

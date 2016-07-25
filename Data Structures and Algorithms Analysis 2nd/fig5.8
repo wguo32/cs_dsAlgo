@@ -1,0 +1,18 @@
+
+      procedure InitializeTable( var H : HashTable );
+        var
+          i : integer;
+    
+      begin
+          for i := TableSize - 1 downto 0 do
+          begin
+              new( H[ i ] );
+              if H[ i ] = nil then
+                  FatalError( 'Out of space!!!' )
+              else
+                  H[ i ]^.Next := nil;
+          end;
+      end;
+
+
+

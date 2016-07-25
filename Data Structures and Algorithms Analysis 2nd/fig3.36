@@ -1,0 +1,13 @@
+
+      function Find( X : ElementType; L : List ) : Position;
+        var
+          P : Position;
+      begin
+{1}       P := CursorSpace[ L ].Next;
+{2}       while ( P <> 0 ) and ( CursorSpace[ P ].Element <> X ) do
+{3}           P := CursorSpace[ P ].Next;
+{4}       Find := P;
+      end;
+
+
+

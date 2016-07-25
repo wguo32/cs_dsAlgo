@@ -1,0 +1,26 @@
+
+          { Assume T Is Initialized As in Fig 9.18 }
+      procedure WeightedNegative( var T : Table );
+        var
+          V, W : Vertex;
+          Q : Queue;
+      begin
+{1}       MakeEmpty( Q );
+{2}       Enqueue( S, Q );    { Enqueue The Start Vertex S }
+    
+{3}       while not IsEmpty( Q ) do
+          begin
+{4}           V := Dequeue( Q );
+{5}           for Each W Adjacent to V do
+{6}               if T[ W ].Dist > T[ V ].Dist + C( V,W ) then
+                  begin
+{7}                   T[ W ].Dist := T[ V ].Dist + C( V,W );
+{8}                   T[ W ].Path := V;
+{9}                   if W Is not Already in Q then
+{10}                      Enqueue( W, Q );
+                  end;
+          end;
+      end;
+
+
+

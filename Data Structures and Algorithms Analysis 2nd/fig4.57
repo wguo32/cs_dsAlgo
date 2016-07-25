@@ -1,0 +1,19 @@
+
+      procedure Splay( Current : SplayPtr );
+        var
+          P : SplayPtr;
+      begin
+          P := Current^.Parent;
+          while P <> nil do
+          begin
+              if P^.Parent = nil then
+                  SingleRotate( Current )
+              else
+                  DoubleRotate( Current );
+          
+              P := Current^.Parent;
+          end;
+      end;
+
+
+

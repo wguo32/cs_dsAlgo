@@ -1,0 +1,22 @@
+      
+      { Return a pointer to Node containing X, or Bottom if Not Found }
+      
+      function Find( Item : ElementType; L : SkipList ) : SkipPtr;
+        var
+          Current : SkipPtr;
+      begin
+          Current := L;
+          Bottom^.Element := Item;
+      
+          while Item <> Current^.Element do
+              if Item < Current^.Element then
+                  Current := Current^.Down
+              else
+                  Current := Current^.Right;
+      
+          Find := Current;
+      end;
+      
+      
+      
+      

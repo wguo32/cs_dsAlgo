@@ -1,0 +1,8 @@
+
+      procedure MakeEmpty( T : SearchTree );
+      begin
+          T := nil;
+      end;
+
+
+

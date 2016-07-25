@@ -1,0 +1,8 @@
+
+      function IsLast( P : Position; L : List ) : boolean;
+      begin
+          IsLast := ( CursorSpace[ P ].Next = 0 );
+      end;
+
+
+

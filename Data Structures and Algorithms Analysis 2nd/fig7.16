@@ -1,0 +1,33 @@
+
+      { QSelect Places The Kth Smallest Element in A[ K ] }
+    
+      procedure QSelect( var A : InputData; k, Left, Right : integer );
+        var
+          i, j : integer;
+          Pivot : InputType;
+      begin
+{1}       if Left + Cutoff <= Right then begin
+{2}           Median3( A, Left, Right, Pivot ); { * }
+    
+{3}           i := Left; j := Right - 1; { * }
+              repeat
+{4}               repeat i := i + 1 until A[ i ] >= Pivot;
+{5}               repeat j := j - 1 until A[ j ] <= Pivot;
+{6}               Swap( A[ i ], A[ j ] );
+{7}           until j <= i;
+    
+{8}           Swap( A[ i ], A[ j ] );        { Undo Last Swap }
+{9}           Swap( A[ i ], A[ Right - 1 ] );  { Restore Pivot } { * }
+    
+{10}          if k < i then
+{11}              QSelect( A, k, Left, i - 1 )
+              else
+{12}          if k > i then
+{13}              QSelect( A, k, i + 1, Right );
+          end  { if }
+          else
+{14}          InsertSort( A, Left, Right );
+      end;
+
+
+

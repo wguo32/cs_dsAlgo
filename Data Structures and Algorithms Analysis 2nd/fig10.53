@@ -1,0 +1,31 @@
+
+      { Compute All-Shortest Paths }
+      { A[ ] Contains The Adjacency Matrix }
+      { D[ ] Contains The Values of Shortest Path }
+      { Actual Path Can Be Computed Via Another Procedure Using Path }
+      { If D[ i, i ] Is Negative, A Negative Cycle Is Detected }
+    
+      procedure AllPairs( A : TwoDArray; var D, Path : TwoDArray );
+        var
+          i, j, k : integer;
+      begin
+{1}       for i := 1 to NumVertex do	{ Initialize D and Path }
+{2}           for j := 1 to NumVertex do
+              begin
+{3}               D[ i, j ] := A[ i, j ];
+{4}               Path[ i, j ] := 0;
+              end;
+    
+{5}       for k := 1 to NumVertex do
+{6}           for i := 1 to NumVertex do
+{7}               for j := 1 to NumVertex do
+{8}                   if D[ i, k ] + D[ k, j ] < D[ i, j ] then
+                      begin
+                          { Update Minimum }
+{9}                       D[ i, j ] := D[ i, k ] + D[ k, j ];
+{10}                      Path[ i, j ] := k;
+                      end;
+      end;
+
+
+

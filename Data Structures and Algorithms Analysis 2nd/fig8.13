@@ -1,0 +1,17 @@
+
+      { Assumes Root1 and Root2 Are Roots. }
+    
+      procedure Union( var S : DisjSet; Root1, Root2 : SetType );
+      begin
+          if S[ Root2 ] < S[ Root1 ] then      { Root2 Is Deeper set }
+              S[ Root1 ] := Root2
+          else
+          begin
+              if S[ Root2 ] = S[ Root1 ] then { Same Height, So Update }
+                  S[ Root1 ] := S[ Root1 ] - 1;
+              S[ Root2 ] := Root1;             { Make Root1 new Root }
+          end;
+      end;
+
+
+

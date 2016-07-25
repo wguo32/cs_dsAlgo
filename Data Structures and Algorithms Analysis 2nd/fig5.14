@@ -1,0 +1,14 @@
+
+      type
+          KindOfEntry = ( Legitimate, Empty, Deleted );
+    
+          HashEntry = record
+              Element : ElementType;
+              Info    : KindOfEntry;
+          end;
+    
+          Position = Index;
+          HashTable = array[ Index ] of HashEntry;
+
+
+

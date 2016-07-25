@@ -1,0 +1,11 @@
+
+      function Top( var S : Stack ) : ElementType;
+      begin
+          if IsEmpty( S ) then
+              Error( 'empty stack' )
+          else
+              Top := S.StackArray[ S.TopOfStack ];
+      end;
+
+
+

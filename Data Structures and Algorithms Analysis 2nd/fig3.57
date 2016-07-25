@@ -1,0 +1,11 @@
+
+      type
+          Queue = record
+              QFront	 : integer;
+              QRear	 : integer;
+              QSize	 : integer;
+              QArray	 : array[ 1 .. MaxQSize ] of ElementType;
+          end;
+
+
+

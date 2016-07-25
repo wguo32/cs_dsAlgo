@@ -1,0 +1,48 @@
+
+      { LPos = Start of Left Half, RPos = Start of Right Half }
+    
+      procedure Merge( var A, TmpArray : InputData;
+                          LPos, RPos, RightEnd : integer );
+        var
+          LeftEnd, NumElements, TmpPos : integer;
+      begin
+          LeftEnd := RPos - 1;
+          TmpPos := LPos;
+    
+              { Main Loop }
+          while ( LPos <= LeftEnd ) and ( RPos <= RightEnd ) do
+          begin
+              if A[ LPos ] < A[ RPos ] then
+              begin
+                  TmpArray[ TmpPos ] := A[ LPos ];
+                  LPos := LPos + 1;
+              end
+              else
+              begin
+                  TmpArray[ TmpPos ] := A[ RPos ];
+                  RPos := RPos + 1;
+              end;
+              TmpPos := TmpPos + 1;
+          end;
+    
+          while LPos <= LeftEnd do    { Copy Rest of First Half }
+          begin
+              TmpArray[ TmpPos ] := A[ LPos ];
+              TmpPos := TmpPos + 1; LPos := LPos + 1;
+          end;
+    
+          while RPos <= RightEnd do   { Copy Rest of Second Half }
+          begin
+              TmpArray[ TmpPos ] := A[ RPos ];
+              TmpPos := TmpPos + 1; RPos := RPos + 1;
+          end;
+    
+          for i := 1 to NumElements do   { Copy TmpArray Back }
+          begin
+              A[ RightEnd ] := TmpArray[ RightEnd ];
+              RightEnd := RightEnd - 1;
+          end;
+      end;
+
+
+

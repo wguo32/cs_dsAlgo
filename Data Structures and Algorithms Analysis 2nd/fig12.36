@@ -1,0 +1,25 @@
+      
+      procedure Insert( Item : ElementType; var T : AATree );
+      begin
+          if T = NilNode then
+          begin
+              new( T ); T^.Element := Item;
+              T^.Left := NilNode; T^.Right := NilNode; T^.Level := 1;
+          end
+          else
+          begin
+              if Item < T^.Element then
+                  Insert( Item, T^.Left )
+              else
+              if Item > T^.Element then
+                  Insert( Item, T^.Right );
+              { Otherwise it's a duplicate; do nothing }
+      
+              Skew ( T );
+              Split( T );
+          end;
+      end;  { Insert }
+      
+      
+      
+      

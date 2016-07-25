@@ -1,0 +1,8 @@
+
+      procedure MakeEmpty( var S : Stack );
+      begin
+          S.TopOfStack := 0;
+      end;
+
+
+

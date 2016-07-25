@@ -1,0 +1,11 @@
+
+      function Bad( N : integer ) : integer;
+      begin
+{1}       if N = 0 then
+{2}           Bad := 0
+          else
+{3}           Bad := Bad( N div 3 + 1 ) + N - 1 ;
+      end;
+
+
+

@@ -1,0 +1,51 @@
+      
+      { Insertion into a 2-d heap }
+      
+      procedure Insert( var Item : ItemType; var H : KdHeap );
+        var
+          MyStack : array[ 1..32 ] of integer;
+          StackTop : integer;
+          Current : integer;
+          ConsecutiveOK : integer;
+          BranchingKey : integer;
+      begin
+          StackTop := 0; ConsecutiveOK := 0; BranchingKey := 1;
+      
+          if H.Size = MaxSize then
+              writeln( 'KdHeap is full' )
+          else
+          begin
+              H.Size := H.Size + 1;
+              H.Element[ H.Size ] := Item;
+              Current := H.Size div 2;
+              BranchingKey := GetBranching( H.Size );
+              while ConsecutiveOK <> 2 do
+              begin
+                  BranchingKey := 3 - BranchingKey;    { Toggle }
+                  if LessThan( Item, H.Element[ Current ], BranchingKey ) then
+                      ConsecutiveOK := 0
+                  else
+                      ConsecutiveOK := ConsecutiveOK + 1;
+      
+                  StackTop := StackTop + 1;
+                  MyStack[ StackTop ] := Current;
+                  Current := Current div 2;
+              end;
+      
+              StackTop := StackTop - 2;    { Skip Top Two Entries }
+                  { Note that this preserves BranchingKey }
+              while StackTop <> 0 do
+              begin
+                  Current := MyStack[ StackTop ];
+                  StackTop := StackTop - 1;
+                  if LessThan( H.Element[ H.Size ], H.Element[ Current ],
+                                                         BranchingKey ) then
+                      Swap( H.Element[ H.Size ], H.Element[ Current ] );
+                  BranchingKey := 3 - BranchingKey;
+              end;
+          end;
+      end;
+      
+      
+      
+      

@@ -1,0 +1,11 @@
+
+      function Find( X : ElementType; var S : DisjSet );
+      begin
+          if S[ X ] <= 0 then
+              Find := X
+          else
+              Find := Find( S[ X ], S );
+      end;
+
+
+

@@ -1,0 +1,19 @@
+
+      procedure ListDir( D : DirectoryOrFile; Depth : integer );
+      begin
+{1}       if D Is A Legitimate Entry then
+          begin
+{2}           PrintName ( Depth, D );
+{3}           if( D Is A Directory ) then
+{4}               for Each Child, C, of D do
+{5}                   ListDir( C, Depth + 1 );
+          end;
+      end;
+    
+      procedure ListDirectory( D : DirectoryOrFile );
+      begin
+          ListDir( D, 0 );
+      end;
+
+
+

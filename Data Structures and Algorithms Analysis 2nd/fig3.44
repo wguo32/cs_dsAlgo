@@ -1,0 +1,18 @@
+
+      procedure Push( X : ElementType; var S : Stack );
+        var
+          TmpCell : ^Node;
+      begin
+          new( TmpCell );
+          if TmpCell = nil then
+              FatalError( 'Out of space!!!' )
+          else
+          begin
+              TmpCell^.Element := X;
+              TmpCell^.Next := S;
+              S := TmpCell;
+          end;
+      end;
+
+
+

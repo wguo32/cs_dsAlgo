@@ -1,0 +1,17 @@
+
+      function Find( X : integer; T : SearchTree ) : TreePtr;
+      begin
+          if T = nil then
+              Find := nil
+          else
+          if X < T^.Element then
+              Find := Find( X, T^.Left )
+          else
+          if X > T^.Element then
+              Find := Find( X, T^.Right )
+          else
+              Find := T;
+      end;  { Find }
+
+
+

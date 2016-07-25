@@ -1,0 +1,13 @@
+
+      function Sum( N : integer ) : integer;
+        var
+          i, PartialSum : integer;
+      begin
+{1}       PartialSum := 0;
+{2}       for i := 1 to N do
+{3}           PartialSum := PartialSum + i * i * i;
+{4}       Sum := PartialSum;
+      end;
+
+
+

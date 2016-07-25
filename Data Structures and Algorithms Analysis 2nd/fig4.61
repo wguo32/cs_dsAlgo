@@ -1,0 +1,36 @@
+
+      procedure ZigZigLeft( X : SplayPtr );
+        var
+          P, G, B, C, Ggp : SplayPtr;
+      begin
+          P := X^.Parent;
+          G := P^.Parent;
+          B := X^.Right;
+          C := P^.Right;
+          Ggp := G^.Parent;
+    
+          X^.Right := P;            { X's New Right Child Is P }
+          P^.Parent := X;
+    
+    
+          P^.Right := G;            { P's New Right Child Is G }
+          G^.Parent := P;
+    
+          if B <> nil then          { P's New Left Child Is Subtree B }
+              B^.Parent := P;
+          P^.Left := B;
+    
+          if C <> nil then          { G's New Left Child Is Subtree C }
+              C^.Parent := G;
+          G^.Left := C;
+    
+          X^.Parent := Ggp;         { Connect to Rest of Subtree }
+          if Ggp <> nil then
+              if Ggp^.Left = G then
+                  Ggp^.Left := X
+              else
+                  Ggp^.Right := X;
+      end;
+
+
+

@@ -1,0 +1,16 @@
+
+      procedure DeleteList( L : List );
+        var
+          P : Position;
+      begin
+{1}       P := L^.Next;    { Header Assumed }
+{2}       L^.Next := nil;
+{3}       while P <> nil do
+          begin
+{4}           dispose( P );
+{5}           P := P^.Next;
+          end;
+      end;
+
+
+

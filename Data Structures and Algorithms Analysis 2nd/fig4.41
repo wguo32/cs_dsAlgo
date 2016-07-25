@@ -1,0 +1,22 @@
+
+      { This procedure Can Be Called Only if k2 Has A Left Child }
+      { Perform A Rotate Between A Node (k2) and Its Left Child. }
+      { Update Heights }
+      { Then Assign The new Root to k2 }
+    
+      procedure SRotateLeft( var k2 : AvlPtr );
+        var
+          k1 : AvlPtr;
+      begin
+          k1 := k2^.Left;
+          k2^.Left := k1^.Right;
+          k1^.Right := k2;
+    
+          k2^.Height := 1 + Max( Height( k2^.Left ), Height( k2^.Right ) );
+          k1^.Height := Max( Height( k1^.Left ), k2^.Height ) + 1;
+    
+          k2 := k1;		{ Assign new Root }
+      end;
+
+
+

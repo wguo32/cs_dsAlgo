@@ -1,0 +1,37 @@
+      
+      type
+          ColorType = ( Red, Black );
+      
+          RedBlackPtr  = ^RedBlackNode;
+          RedBlackTree = RedBlackPtr;
+      
+          RedBlackNode = record
+              Element   : ElementType;
+              Left      : RedBlackPtr;
+              Right     : RedBlackPtr;
+              Color     : ColorType;
+          end;
+      
+      var
+          NilNode : RedBlackPtr;  { Global Variable; initialize to nil once }
+      
+          { Initialization Procedure }
+      procedure Initialize( var T : RedBlackTree );
+      begin
+          if NilNode = nil then
+          begin
+              new( NilNode );
+              NilNode^.Left := NilNode;
+              NilNode^.Right := NilNode;
+              NilNode^.Color := Black;
+          end;
+      
+          { Create the header node }
+          new( T );
+          T^.Element := NegInfinity;
+          T^.Right := NilNode;
+          T^.Color := Black;
+      end;
+      
+      
+      

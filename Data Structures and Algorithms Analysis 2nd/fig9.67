@@ -1,0 +1,27 @@
+
+      procedure FindArt( V : Vertex );
+        var
+          W : Vertex;
+      begin
+{1}       Visited[ V ] := true;
+{2}       Num[ V ] := Counter;
+{3}       Counter := Counter + 1;
+{4}       Low[ V ] := Num[ V ];                            { Rule 1 }
+    
+{5}       for Each W Adjacent to V do begin
+{6}           if not Visited[ W ] then         { Forward Edge }
+              begin
+{7}               Parent[ W ] := V;
+{8}               FindArt( W );
+{9}               if Low[ W ] >= Num[ V ] then
+{10}                  writeln( V, ' is an articulation point' );
+{11}              Low[ V ] := Min( Low[ V ], Low[ W ] );   { Rule 3 }
+              end
+              else
+{12}          if Parent[ V ] <> W then         { Backedge }
+{13}              Low[ V ] := Min( Low[ V ], Num[ W ] );   { Rule 2 }
+          end;
+      end;
+
+
+

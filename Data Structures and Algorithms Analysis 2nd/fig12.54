@@ -1,0 +1,40 @@
+      
+      procedure Insert( Item : ElementType; var H : PairHeap );
+        var
+          NewNode : Position;
+      begin
+          new( NewNode );
+          NewNode^.Element := Item;
+          NewNode^.LeftChild := nil;
+          NewNode^.NextSibling := nil;
+          NewNode^.Prev := nil;
+          if H = nil then
+              H := NewNode
+          else
+              H := CompareAndLink( H, NewNode );
+      end;
+      
+      
+      procedure DecreaseKey( P : Position; NewVal : ElementType; var H : PairHeap );
+      begin
+          if NewVal > P^.Element then
+              writeln( 'Decrease Key called with larger value' );
+      
+          P^.Element := NewVal;
+          if P <> H then
+          begin
+              if P^.NextSibling <> nil then
+                  P^.NextSibling^.Prev := P^.Prev;
+              if P^.Prev^.LeftChild = P then
+                  P^.Prev^.LeftChild := P^.NextSibling
+              else
+                  P^.Prev^.NextSibling := P^.NextSibling;
+      
+              P^.NextSibling := nil;
+              H := CompareAndLink( H, P );
+          end;
+      end;
+      
+      
+      
+      

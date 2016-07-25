@@ -1,0 +1,19 @@
+      
+      { Initialization }
+      { Header and NilNode are global }
+      { NilNode must be set to nil once at the start of the program }
+      
+      procedure Initialize( var T : SplayTree );
+      begin
+          if NilNode = nil then
+          begin
+              new( NilNode );
+              NilNode^.Left := NilNode;
+              NilNode^.Right := NilNode;
+              new( Header );
+          end;
+          T := NilNode;
+      end;
+      
+      
+      

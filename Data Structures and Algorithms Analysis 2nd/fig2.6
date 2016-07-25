@@ -1,0 +1,20 @@
+
+      function MaxSubsequenceSum( var A : InputArray;
+                                      N : integer ) : integer;
+        var
+          ThisSum, MaxSum, BestI, BestJ, i, j : integer;
+      begin
+{1}       MaxSum := 0; BestI := 0; BestJ := 0;
+{2}       for i := 1 to N do begin
+{3}           ThisSum:= 0;
+{4}           for j := i to N do begin
+{5}               ThisSum := ThisSum + A[ j ];
+{6}               if ThisSum > MaxSum then
+                    { Update MaxSum, BestI, BestJ }
+              end;	{ for j }
+          end;	{ for i }
+{7}       MaxSubsequenceSum := MaxSum;
+      end;
+
+
+

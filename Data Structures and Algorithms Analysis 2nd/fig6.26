@@ -1,0 +1,17 @@
+
+      function Merge( H1, H2 : PriorityQueue ) : PriorityQueue;
+      begin
+{1}       if H1 = nil then
+{2}           Merge := H2
+          else
+{3}       if H2 = nil then
+{4}           Merge := H1
+          else
+{5}       if H1^.Element < H2^.Element then
+{6}           Merge := Merge1( H1, H2 )
+          else
+{7}           Merge := Merge1( H2, H1 );
+      end;
+
+
+

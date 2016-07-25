@@ -1,0 +1,22 @@
+
+      procedure Topsort( G : Graph );
+        var
+          Counter : integer;
+          V, W	 : Vertex;
+      begin
+          for Counter:=1 to NumVertex do
+          begin
+              V := FindNewVertexOfIndegreeZero;
+              if V = 0 then   { Terminate Loop Too }
+                  Error( 'graph has a cycle' )
+              else
+              begin
+                  TopNum[ V ] := Counter;
+                  for Each W Adjacent to V do
+                      Indegree[ W ] := Indegree[ W ] - 1;
+              end;
+          end;
+      end;
+
+
+

@@ -1,0 +1,20 @@
+
+      { Insert (After Legal Position P).  Header Implementation Assumed }
+    
+      procedure Insert( X : ElementType; L : List; P : Position );
+        var
+          TmpCell : Position;
+      begin
+{1}       new( TmpCell );
+{2}       if TmpCell = nil then
+{3}           FatalError( 'Out of space!!!' )
+          else
+          begin
+{4}           TmpCell^.Element := X;
+{5}           TmpCell^.Next := P^.Next;
+{6}           P^.Next := TmpCell;
+          end;
+      end;
+
+
+

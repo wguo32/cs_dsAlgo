@@ -1,0 +1,19 @@
+
+      function Find( Key : ElementType; var H : HashTable ) : Position;
+        label 999;
+        var
+          P, List : Position;
+      begin
+{1}       List := H[ Hash( Key ) ];
+{2}       P := List^.Next;
+{3}       while P <> nil do
+{4}           if P^.Element = Key then
+{5}               goto 999
+              else
+{6}               P := P^.Next;
+      999:
+{7}       Find := P;
+      end;
+
+
+

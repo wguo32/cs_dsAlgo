@@ -1,0 +1,48 @@
+      
+      { Assumes FirstSibling is NOT nil }
+      
+      function CombineSiblings( FirstSibling : Position ) : PairHeap;
+        var
+          i, j, Nodes, NumSiblings : integer;
+      begin
+              { Place each subtree in TreeArray }
+          NumSiblings := 0;
+          while FirstSibling <> nil do
+          begin
+              NumSiblings := NumSiblings + 1;
+              TreeArray[ NumSiblings ] := FirstSibling;
+              FirstSibling^.Prev^.NextSibling := nil;   { Break links }
+              FirstSibling := FirstSibling^.NextSibling;
+          end;
+      
+              { Combine the subtrees two at a time, going left to right }
+          if NumSiblings > 1 then
+          begin
+              Nodes := NumSiblings;
+              TreeArray[ Nodes + 1 ] := nil;
+              i := 1;
+              while i + 1 <= Nodes do
+              begin
+                  TreeArray[ i ] := CompareAndLink( TreeArray[ i ],
+                                                    TreeArray[ i + 1 ] );
+                  j := i;
+                  i := i + 2;
+              end;
+      
+              { j has index of result of last CompareAndLink }
+              { If an odd number of trees, get the last one }
+              if j = Nodes - 2 then
+                  TreeArray[ j ] := CompareAndLink( TreeArray[ j ],
+                                                    TreeArray[ j + 2 ] );
+      
+              { Now go right to left, merging last tree with }
+              { next to last. The result becomes the new last }
+              while j >= 3 do
+              begin
+                  TreeArray[ j - 2 ] := CompareAndLink( TreeArray[ j - 2 ],
+                                                        TreeArray[ j ] );
+                  j := j - 2;
+              end;
+          end;
+          CombineSiblings := TreeArray[ 1 ];
+      end;

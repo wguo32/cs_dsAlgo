@@ -1,0 +1,29 @@
+
+      procedure Kruskal( var G : Graph );
+        var
+          EdgesAccepted : integer;
+          S    : DisjSet;
+          H    : PriorityQueue;
+          U, V : Vertex;
+          USet, VSet : SetType;
+          E    : Edge;
+      begin
+{1}       Initialize( S );
+{2}       ReadGraphIntoHeapArray( G, H );
+{3}       BuildHeap( H );
+    
+{4}       EdgesAccepted := 0;
+{5}       while EdgesAccepted < NumVertex-1 do begin
+{6}           E := DeleteMin( H ); 	 { E = ( U,V ) }
+{7}           USet := Find( U, S );
+{8}           VSet := Find( V, S );
+{9}           if USet <> VSet then begin
+{10}              writeln( U, V );	{ Accept The Edge }
+{11}              EdgesAccepted := EdgesAccepted + 1;
+{12}              Union( S, USet, VSet );
+              end;
+          end;
+      end;
+
+
+

@@ -1,0 +1,17 @@
+      
+          { Initialize NilNode; have T point at it }
+      procedure Initialize( var T : Treap );
+      begin
+          if NilNode = nil then
+          begin
+              new( NilNode );
+              NilNode^.Left := NilNode;
+              NilNode^.Right := NilNode;
+              NilNode^.Priority := Infinity;
+          end;
+          T := NilNode;
+      end;
+      
+      
+      
+      

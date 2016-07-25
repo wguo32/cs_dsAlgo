@@ -1,0 +1,12 @@
+
+      procedure PrintTree( T : SearchTree )
+      begin
+          if T <> nil then begin
+              PrintTree( T^.Left );
+              writeln( T^.Data );
+              PrintTree( T^.Right );
+          end;  { if }
+      end;
+
+
+

@@ -1,0 +1,11 @@
+
+      procedure Pop( var S : Stack );
+      begin
+          if IsEmpty( S ) then
+              Error( 'empty stack' )
+          else
+              S.TopOfStack := S.TopOfStack - 1;
+      end;
+
+
+

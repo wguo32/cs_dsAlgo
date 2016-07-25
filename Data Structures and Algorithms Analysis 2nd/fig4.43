@@ -1,0 +1,13 @@
+
+      { This function Can Only Be Called if k3 Has A Left Child }
+      { and k3's Left Child Has A Right Child. }
+      { Do The Left-Right Double Rotation.  Update Heights. }
+    
+      procedure DRotateLeft( var k3 : AvlPtr );
+      begin
+          SRotateRight( k3^.Left );    { Rotate Between k1 and k2 }
+          SRotateLeft( k3 );           { Rotate Between k3 and k2 }
+      end;
+
+
+
